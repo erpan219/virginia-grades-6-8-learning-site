@@ -1,10 +1,19 @@
 """Inline maintained enhancement sources into the standalone site, idempotently."""
 from pathlib import Path
+import hashlib
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
 page = ROOT / "index.html"
 html = page.read_text()
+
+# A fresh HTML document must not reuse an older cached external engine.
+for engine in ["exams-profiles", "research-features", "writing-source"]:
+    src = f"enhancements/{engine}.js"
+    digest = hashlib.sha256((ROOT / src).read_bytes()).hexdigest()[:16]
+    pattern = r'src="' + re.escape(src) + r'(?:\?v=[a-f0-9]+)?"'
+    html, count = re.subn(pattern, f'src="{src}?v={digest}"', html)
+    assert count == 1, f"Expected one script reference for {src}"
 
 def put(name, value, anchor, before=True, javascript=False):
     global html
