@@ -8,7 +8,9 @@ Bilingual English / Simplified Chinese learning for grades 6–8. This revision 
 
 ## Edit and verify
 
-The static GitHub Pages frontend comprises `index.html`, `assets/`, and the three external engines in `enhancements/` (`exams-profiles.js`, `research-features.js`, `writing-source.js`). Publish them together. Most existing engine/data code remains in the HTML; maintained additions live in `enhancements/` and `content/`. Rebuild and verify with:
+The static GitHub Pages frontend comprises `index.html`, `assets/`, and the three external engines in `enhancements/` (`exams-profiles.js`, `research-features.js`, `writing-source.js`). Publish them together. Most existing engine/data code remains in the HTML; maintained additions live in `enhancements/` and `content/`.
+
+The assembler versions each external engine URL with its content hash so a fresh page cannot reuse an older cached engine. Rebuild and verify with:
 
 ```sh
 npm ci

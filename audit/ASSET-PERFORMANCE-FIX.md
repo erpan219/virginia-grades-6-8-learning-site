@@ -16,9 +16,9 @@ The asset extraction moves those bytes to local, content-addressed URLs and
 preserves the original image bytes, IDs, bilingual descriptions, and
 answer-side reveal conditions. It removes 5,623,664 bytes from the HTML. A
 final assembled HTML comparison against commit `b3e0e5e` is 9,396,112 to
-3,330,636 bytes (64.6% smaller). Python gzip compression of those exact files
-is 5,411,355 to 1,122,915 bytes. The three separately loaded script files add
-343,690 uncompressed bytes. These are file/compression measurements, not a
+3,331,212 bytes (64.6% smaller). Python gzip compression of those exact files
+is 5,411,355 to 1,123,107 bytes. The three separately loaded script files add
+343,903 uncompressed bytes. These are file/compression measurements, not a
 measured load-time result. Asset requests still consume bandwidth
 when their illustrations become relevant, and caching remains subject to the
 hosting service's response headers and browser cache state.
