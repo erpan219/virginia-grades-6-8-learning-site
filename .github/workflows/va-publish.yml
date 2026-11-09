@@ -8,9 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          test "$(git rev-parse HEAD:index.html)" = 1835a74180901a64eb87382c5e7a493b84b46cd2
-          curl --fail --location --proto '=https' --proto-redir '=https' 'https://muse.ai/files/1219155904625602/1663503271819586/zea70xykrpl03y15v3myze4u/virginia-grades-6-8-learning-site.html' -o /tmp/index.html
-          echo '9a98cf1f5845df5c0c4b606ec0b544a3fee984a25e91db4a35f746133aa9f8f2  /tmp/index.html' | sha256sum --check
+          test "$(git rev-parse HEAD:index.html)" = a5bc0a02c5fd1015771d518faabdf25f1ff1bbd9
+          curl --fail --location --proto '=https' --proto-redir '=https' 'https://muse.ai/files/1219155904625602/1530773232207404/vhyvc91tmqvp7dcce1d31aw5/virginia-grades-6-8-learning-site.html' -o /tmp/index.html
+          echo '8fa239a22dd5a6636c152ddeb7afc216cc1141c7850a4e52825a0c96c2695391  /tmp/index.html' | sha256sum --check
           cp /tmp/index.html index.html
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
