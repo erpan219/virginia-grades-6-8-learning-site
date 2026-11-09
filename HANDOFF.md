@@ -57,6 +57,15 @@ Identical behaviour in labs and lessons: small, semi-transparent, auto-hide afte
 - Illustrations for the 269 research-vocabulary cards were never in scope.
 - SOL scale is 0–600. There is no 100-point scale; cut scores phase in 2026-27 → 2029-30.
 
+## Decision records
+
+The authority-stamped decision records live in the project workspace at
+`files/va/decisions.md` (goal: virginia-grades-6-8-learning-site) — one entry
+per settled decision (id, decision, authority, date, decided by, rationale).
+The "Do NOT re-raise" list above is a summary; `decisions.md` is the source
+of truth. The `va` CLI (`tools/va`) and the bug-fix template
+(`files/va/bug-fix-template.md`) both reference it.
+
 ## Publishing (how changes go live)
 
 - Edit `index.html` (web editor or clone), commit to `main` — GitHub Pages republishes automatically in about a minute.
