@@ -1,0 +1,15 @@
+{
+  "name": "virginia-grades-6-8-learning-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node content/build.mjs && python3 scripts/assemble.py && python3 scripts/externalize-assets.py --write",
+    "check": "node content/validate.mjs && node scripts/check-scripts.mjs && python3 scripts/externalize-assets.py --check",
+    "test:unit": "node --test scripts/tests/*.mjs enhancements/tests/accounts.test.cjs && python3 -m unittest discover -s scripts/tests -p 'test_assets.py'",
+    "test:browser": "playwright test",
+    "test:browser:list": "playwright test --list"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}

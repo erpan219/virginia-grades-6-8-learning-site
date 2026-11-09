@@ -2,10 +2,14 @@ import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { enrichment } from './enrichment.mjs';
 import { wrongReasons } from './wrong-reasons.mjs';
-import { corrections } from './corrections.mjs';
+import { corrections, correctionTitles, correctionWrongReasons } from './corrections.mjs';
 
 export function makeCorrectionsBundle() {
-  const entries = corrections.map(c => ({ lesson: c.lesson, title: enrichment.find(e => e.lesson === c.lesson).title, field: c.field, value: c.value }));
+  const entries = corrections.map(c => {
+    const title = correctionTitles[c.lesson];
+    if (!title) throw new Error('Missing reviewed correction title: ' + c.lesson);
+    return { lesson: c.lesson, title, field: c.field, value: c.value };
+  });
   const json = JSON.stringify(entries).replaceAll('<', '\\u003c');
   return `/* BEGIN VA CONTENT CORRECTIONS 2026-11-09 */
 (function () {
@@ -72,6 +76,8 @@ export const wrongReasonBundle = `/* BEGIN VA CONTENT WRONG REASONS 2026-11-09 *
 Object.keys(VA_CONTENT_EXPANSION.wrong).forEach(function (key) {
   VA_WRONG[key] = VA_CONTENT_EXPANSION.wrong[key];
 });
+// Existing choices whose wording changed also need matching misconception feedback.
+Object.assign(VA_WRONG, ${JSON.stringify(correctionWrongReasons).replaceAll('<', '\\u003c')});
 /* END VA CONTENT WRONG REASONS 2026-11-09 */
 `;
 

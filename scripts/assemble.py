@@ -22,6 +22,7 @@ def put(name, value, anchor, before=True, javascript=False):
         html = html[:pos] + block + "\n" + html[pos:]
 
 config = ROOT / "enhancements" / "account-config.js"
+put("choice-order", '<script>\n' + (ROOT / "enhancements/choice-order.js").read_text() + '\n</script>', '</head>')
 if config.exists():
     put("account-config", '<script>\n' + config.read_text() + '\n</script>', '</head>')
 for name in ["design", "accounts"]:

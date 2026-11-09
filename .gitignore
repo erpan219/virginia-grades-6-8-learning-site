@@ -11,3 +11,6 @@ node_modules/
 audit/evidence/*.jpg
 audit/evidence/*.png
 audit/evidence/qa-profile-export.json
+playwright-report/
+test-results/
+__pycache__/

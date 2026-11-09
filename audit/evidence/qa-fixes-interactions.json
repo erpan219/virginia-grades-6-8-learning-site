@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-09",
+  "target": "local preview only",
+  "lesson": {
+    "canonicalWrongFeedback": true,
+    "partialReopenPreservedOrderAndAnswers": true,
+    "firstAttemptScore": "6/7",
+    "completedAttemptFreshStart": true
+  },
+  "worksheet": {
+    "previewMatchesPrintArea": true,
+    "keyMatchesDisplayedOrder": true
+  },
+  "challenge": {
+    "languageSwitchPreservedOrder": true
+  },
+  "exam": {
+    "reloadPreservedAnswerFlagAndOrder": true,
+    "submittedScore": "1/45",
+    "introImageLoaded": true,
+    "resultsImageLoadedOnMobile": true
+  },
+  "flashcards": {
+    "termSideImages": 0,
+    "revealedImages": 2,
+    "revealedImagesLoaded": true,
+    "ratingAdvancesAndHidesArt": true
+  },
+  "ratioLab": {
+    "keyboardChangesValue": true,
+    "stepButtonChangesValue": true,
+    "buttonSize": "44x44"
+  },
+  "mobile320": {
+    "menuWithinViewport": true
+  },
+  "consoleErrors": 0,
+  "performance": {
+    "timingNotAvailableViaReadOnlyBrowserInterface": true
+  }
+}

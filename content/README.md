@@ -9,7 +9,7 @@ Run `node content/build.mjs` and `node content/validate.mjs` from the repository
 1. Insert `corrections.inline.js` followed by `enrichment.inline.js` immediately before `var VIDEOS =`, in the same script as `var LESSONS`. They must run in that order before any deck, assessment, or question pools are created.
 2. Insert `wrong-reasons.inline.js` immediately after the one-line `var VA_WRONG = {...};` declaration. This extends the established feedback table with exact keys `lesson:question:option`.
 3. Replace the hardcoded home-page question count of 511 with 559, preferably deriving it from `LESSONS`. The existing deck scope counters already use array lengths and account for cloze cards.
-4. The separately generated corrections bundle applies the ten reviewed field changes exported by `corrections.mjs`. It preserves all record counts, option order, and answer indices, including answer index 2 for lesson 23/question 6. The validator verifies the corrected baseline before appending enrichment and confirms later reapplication cannot erase appended examples.
+4. The separately generated corrections bundle applies the reviewed field changes exported by `corrections.mjs`. It preserves all record counts, option positions, and answer indices, including answer index 2 for lesson 23/question 6. Selected distractor wording is improved in place, with matching updates to the choice-specific feedback. The validator verifies the corrected baseline before appending enrichment and confirms later reapplication cannot erase appended examples.
 
 New questions have indices 7–10 in each target lesson. New cards have indices 3–4. The original records and IDs remain in their existing positions. The script validates every target before mutating any data and is idempotent. All additions are inline after integration, retaining the self-contained site.
 
@@ -37,6 +37,28 @@ The history sequence follows the owner's existing Grade 6 USI / Grade 7 USII / G
 After integration, the totals are **73 lessons, 559 MC questions, and 545 flashcards** including the existing extra vocabulary and cloze cards. Existing TEIs are unchanged.
 
 Browser validation belongs to the integrating owner: check enriched lesson Learn/Check/Words views in EN and Chinese at 390px/1440px; answer correct and wrong options for new questions; flip and rate new cards; verify challenge/exam pool availability and print layouts. Test existing saved learner records without clearing or migrating them. The Node checks cannot certify those browser behaviors.
+
+## Follow-up to the live QA report
+
+The November 9 QA fixes extend the correction bundle from 10 to 47 reviewed field replacements across eight existing lessons. No lessons, questions, cards, or saved identities are added or reordered.
+
+- Scientific Investigation questions 0, 2, and 3 now each supply the sunlight, controlled conditions, final-height measurement, and time interval in both languages. The report identified questions 2 and 3; question 0 had the same missing manipulated-variable context.
+- Comparing Texts & Media now teaches checking original evidence and independent investigations, both in its explanation and question 2. Two copies of one unsupported claim are not two confirmations.
+- Linear Functions question 4 explicitly assumes approximately normal data before applying the roughly 68% rule. Its explanation distinguishes this from a claim about arbitrary distributions. The table explanation also now specifies equal input steps before comparing output changes.
+- The 19th Amendment answer describes its prohibition against denying citizens the vote on account of sex. Its explanation retains the discriminatory barriers that continued afterward. The related lesson paragraph also separates the Bill of Rights (first ten amendments) from later voting amendments.
+- Nine Economics distractors now test recognizable misconceptions rather than absurd alternatives. Eleven choice-specific feedback records match the revised Economics and source-evaluation choices.
+
+`pool-checks.mjs` checks bilingual missing-reference patterns and the explicitly audited plant setups. These are regression checks, not a claim that software can prove every question self-contained or factually correct; new contextual questions still need human review in isolation. `validate.mjs` confirms that reverting either language's plant setup is rejected, checks the corrected concepts, and confirms changed distractors have matching feedback.
+
+The answer-position audit groups all items by lesson and all 13 courses. With at least seven questions, more than 70% of correct answers in one stored position produces a warning. It intentionally preserves the original keys (including Algebra I's 63/0/0 split) so historical learner records retain their meaning. These warnings require the integrating UI to shuffle displayed option identities and test grading, feedback, language changes, and resumed exams. They do not by themselves verify runtime shuffling.
+
+Sources checked for this follow-up:
+
+- [Penn State STAT 800: Explaining Variability](https://online.stat.psu.edu/stat800/Lesson02) — indexed primary teaching material states the empirical rule for normal distributions; direct page fetching timed out during this review.
+- [University of Cincinnati Libraries: Trace Claims to the Original Source](https://guides.libraries.uc.edu/c.php?g=1128926&p=8352356) — checking the origin of claims and distinguishing original reporting from repetition.
+- [National Archives: 19th Amendment](https://www.archives.gov/milestone-documents/19th-amendment) — amendment text and the continuation of discriminatory voting barriers after ratification.
+
+All revised lesson wording and scenarios are authored paraphrases, not copied passages from these sources.
 
 ## Sources and authoring basis
 

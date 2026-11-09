@@ -4,21 +4,23 @@ Bilingual English / Simplified Chinese learning for grades 6–8. This revision 
 
 [Live site](https://erpan219.github.io/virginia-grades-6-8-learning-site/) · [Handoff](HANDOFF.md) · [Audit](audit/REPORT.md)
 
-**GitHub is the authoritative source**, per the owner's November 9, 2026 instruction. Muse is the historical origin. The owner approved this revision on November 9, 2026 and confirmed Workers Free is active with no payment method on file. No paid services or upgrades were enabled.
+**GitHub is the authoritative source**, per the owner's November 9, 2026 instruction. Muse is the historical origin. The owner approved the existing release and subsequent [QA fixes](audit/QA-FIXES-2026-11-09.md) for publication, and confirmed Workers Free is active with no payment method on file. No paid services or upgrades were enabled.
 
 ## Edit and verify
 
-`index.html` remains the standalone GitHub Pages artifact. Existing engine/data changes are in that file. Maintained additions live in `enhancements/` and `content/`; the following commands inline them reproducibly:
+The static GitHub Pages frontend comprises `index.html`, `assets/`, and the three external engines in `enhancements/` (`exams-profiles.js`, `research-features.js`, `writing-source.js`). Publish them together. Most existing engine/data code remains in the HTML; maintained additions live in `enhancements/` and `content/`. Rebuild and verify with:
 
 ```sh
-node content/build.mjs
-python3 scripts/assemble.py
-node content/validate.mjs
-node scripts/check-scripts.mjs
+npm ci
+npm run build
+npm run check
+npm run test:unit
 python3 scripts/preview.py
 ```
 
 Open `http://127.0.0.1:4173/` for the local-only site. Test 1440px desktop and 390px mobile in English and Simplified Chinese. Keep IDs, storage semantics, bilingual copy, and accessibility behavior intact. Read `HANDOFF.md` before changing the existing engine.
+
+See [browser regression checks](tests/browser/README.md) for the optional Playwright suite and validation-only CI workflow. That workflow does not deploy or enforce the manual publication approval gate. Answer choices are shuffled for new attempts while stored answers retain canonical indices; older seedless saved exams preserve their original order.
 
 ## Optional accounts
 

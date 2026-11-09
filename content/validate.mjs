@@ -3,8 +3,9 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { enrichment } from './enrichment.mjs';
 import { wrongReasons } from './wrong-reasons.mjs';
-import { corrections } from './corrections.mjs';
+import { corrections, correctionTitles, correctionWrongReasons } from './corrections.mjs';
 import { makeCorrectionsBundle, makeContentBundle, wrongReasonBundle } from './build.mjs';
+import { validatePooledStems, answerPositionAudit } from './pool-checks.mjs';
 
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const start = html.indexOf('var LESSONS=');
@@ -92,9 +93,12 @@ assert.equal(questionCount, 48); assert.equal(cardCount, 24); assert.equal(wrong
 
 // Apply and verify the narrowly reviewed corrections before appending enrichment.
 const expectedCorrected = structuredClone(original);
-assert.equal(corrections.length, 10);
+assert.equal(corrections.length, 47);
 for (const c of corrections) {
-  assert([6, 23, 34].includes(c.lesson), 'Only the three reviewed lessons receive corrections');
+  assert(Object.hasOwn(correctionTitles, c.lesson), 'Only explicitly reviewed lessons receive corrections');
+  assert.equal(original[c.lesson].t[0], correctionTitles[c.lesson]);
+  if (Array.isArray(c.value) && c.value.length === 2 && c.value.every(v => typeof v === 'string')) pair(c.value, `correction ${c.lesson}:${c.field.join(':')}`);
+  if (c.field[0] === 'q' && c.field.length === 3 && [1, 5, 7].includes(c.field[2])) assert(/[\u3400-\u9fff]/u.test(c.value), 'Corrected Chinese prompt, explanation, or hint is Chinese');
   let target = expectedCorrected[c.lesson];
   for (const key of c.field.slice(0, -1)) target = target[key];
   target[c.field.at(-1)] = c.value;
@@ -109,7 +113,14 @@ original.forEach((l, li) => {
   assert.equal(corrected[li].q.length, l.q.length, `Correction preserves question count ${li}`);
   assert.equal(corrected[li].v.length, l.v.length, `Correction preserves card count ${li}`);
   l.q.forEach((q, qi) => {
-    assert.deepEqual(corrected[li].q[qi][2], q[2], `Correction preserves option order ${li}:${qi}`);
+    assert.equal(corrected[li].q[qi][2].length, q[2].length, `Correction preserves option count ${li}:${qi}`);
+    q[2].forEach((option, oi) => {
+      const replacement = corrected[li].q[qi][2][oi];
+      pair(replacement, `corrected ${li}:${qi}:${oi} option`, false);
+      if (JSON.stringify(replacement) !== JSON.stringify(option) && oi !== q[3]) {
+        pair(correctionWrongReasons[`${li}:${qi}:${oi}`], `${li}:${qi}:${oi}: changed distractor has matching feedback`);
+      }
+    });
     assert.equal(corrected[li].q[qi][3], q[3], `Correction preserves answer index ${li}:${qi}`);
   });
   l.v.forEach((v, vi) => assert.deepEqual(corrected[li].v[vi].slice(0, 2), v.slice(0, 2), `Correction preserves card identity ${li}_${vi}`));
@@ -123,10 +134,29 @@ assert.equal(20 / 6 - 2 / 6, 3, 'Divide-every-term-first equation solution');
 assert(corrected[34].bg[1][0].includes('eye color, involve multiple genes'));
 assert(corrected[34].bg[1][1].includes('包括眼睛颜色，都涉及多个基因'));
 assert(corrected[34].v[2][2].includes('allele') && corrected[34].v[2][2].includes('complete-dominance model'));
+validatePooledStems(corrected);
+for (const lang of [0, 1]) {
+  const missingContext = structuredClone(corrected);
+  missingContext[11].q[2][lang] = original[11].q[2][lang];
+  assert.throws(() => validatePooledStems(missingContext), /context|setup/, `Missing context is rejected in language ${lang}`);
+}
+assert(corrected[30].q[2][2][0][0].includes('independently'));
+assert(corrected[30].q[2][2][0][1].includes('独立'));
+assert(corrected[30].bg[0][0].includes('independent evidence'));
+assert(corrected[61].q[5][2][1][0].includes('because of their sex'));
+assert(corrected[61].q[5][4].includes('discriminatory voting laws'));
+assert(corrected[61].q[5][5].includes('歧视性的投票法律'));
+assert(corrected[61].bg[0][0].includes('Later voting amendments'));
+assert(corrected[66].q[4][0].includes('approximately normal'));
+assert(corrected[66].q[4][1].includes('近似正态分布'));
+assert(corrected[66].bg[0][0].includes('equal steps'));
+assert.equal(10 - 2, 8); assert.equal(10 + 2, 12);
+for (const q of corrected[63].q) assert(!/Vanish|Prices are illegal|Stay frozen by law/.test(JSON.stringify(q)));
 
 // Execute the shipped enrichment, then confirm corrected old records stay at their original IDs.
 vm.runInNewContext(makeContentBundle(), context, { timeout: 1000 });
 const updated = JSON.parse(JSON.stringify(context.LESSONS));
+validatePooledStems(updated);
 corrected.forEach((l, li) => {
   assert.deepEqual(updated[li].t, l.t, `lesson ID ${li} unchanged`);
   l.q.forEach((q, qi) => assert.deepEqual(updated[li].q[qi], q, `question ID ${li}:${qi} unchanged`));
@@ -140,8 +170,26 @@ vm.runInNewContext(makeCorrectionsBundle(), context, { timeout: 1000 });
 assert.deepEqual(JSON.parse(JSON.stringify(context.LESSONS)), updated, 'Reapplying corrections cannot erase appended worked examples');
 context.VA_WRONG = { 'old:key': ['old reason', '旧原因'] };
 vm.runInNewContext(wrongReasonBundle, context);
-assert.equal(Object.keys(context.VA_WRONG).length, 97);
+assert.equal(Object.keys(context.VA_WRONG).length, 97 + Object.keys(correctionWrongReasons).length);
 assert.equal(context.VA_WRONG['old:key'][0], 'old reason');
+for (const [key, value] of Object.entries(correctionWrongReasons)) {
+  pair(value, `${key} corrected choice feedback`);
+  assert.deepEqual(JSON.parse(JSON.stringify(context.VA_WRONG[key])), value);
+}
+
+// Raw indices are historical option identities, so keep them and warn instead of
+// silently rewriting learner records. The UI must shuffle displayed identities.
+const positionAudit = answerPositionAudit(updated);
+assert.equal(positionAudit.courses, 13);
+assert.deepEqual(positionAudit.warnings.find(g => g.scope === 'course' && g.id === 'Algebra I').counts, [63, 0, 0]);
+assert.equal(positionAudit.warnings.filter(g => g.scope === 'lesson' && g.id >= 64).length, 9);
+const balancedFixture = {g: 6, s: 'math', t: ['Balanced fixture', '平衡示例'], q: Array.from({length: 9}, (_, i) => ['', '', [], i % 3])};
+assert.equal(answerPositionAudit([balancedFixture]).warnings.length, 0, 'Balanced answer positions produce no warning');
+const skewedFixture = {...balancedFixture, q: balancedFixture.q.map(q => [...q.slice(0, 3), 0])};
+assert.equal(answerPositionAudit([skewedFixture]).warnings.length, 2, 'Severe skew is flagged at both lesson and course levels');
+for (const warning of positionAudit.warnings) {
+  console.warn(`ANSWER POSITION WARNING (${warning.scope} ${warning.id}: ${warning.title}): ${warning.counts.join('/')} — ${Math.round(warning.maximumShare * 100)}% in one stored position. Verify shuffled display order.`);
+}
 
 // Independently calculate the numerical answers used in the authored questions.
 function correct(lesson, question) {
@@ -163,4 +211,4 @@ const aaAa = ['A', 'a'].flatMap(a => ['A', 'a'].map(b => a + b));
 const aaRecessive = ['A', 'a'].flatMap(a => ['a'].map(b => a + b));
 assert.equal(aaAa.filter(x => x === 'aa').length / aaAa.length, 1 / 4);
 assert.equal(aaRecessive.filter(x => x === 'aa').length / aaRecessive.length, 1 / 2);
-console.log(JSON.stringify({ baselineLessons: 73, baselineMC: 511, baselineDuplicatePrompts, reviewedCorrectionFields: corrections.length, correctedLessonIDs: [6, 23, 34], oldAnswerIndexesUnchanged: true, addedLessons: 0, enrichedLessons: 12, addedMC: questionCount, addedCards: cardCount, newWrongOptionReasons: wrongCount, totalMC: 559, totalCardsIncludingExistingExtrasAndCloze: 545, stableOldIDs: true, gradeSubjectCoverage: [...coverage].sort() }, null, 2));
+console.log(JSON.stringify({ baselineLessons: 73, baselineMC: 511, baselineDuplicatePrompts, reviewedCorrectionFields: corrections.length, correctedLessonIDs: Object.keys(correctionTitles).map(Number), oldAnswerIndexesUnchanged: true, addedLessons: 0, enrichedLessons: 12, addedMC: questionCount, addedCards: cardCount, newWrongOptionReasons: wrongCount, correctedWrongOptionReasons: Object.keys(correctionWrongReasons).length, totalMC: 559, totalCardsIncludingExistingExtrasAndCloze: 545, stableOldIDs: true, pooledStemChecks: 'bilingual references + audited plant setup', severeStoredPositionWarnings: positionAudit.warnings.length, gradeSubjectCoverage: [...coverage].sort() }, null, 2));

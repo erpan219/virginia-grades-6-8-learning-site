@@ -12,7 +12,7 @@ A bilingual (English / Simplified Chinese) learning site for Virginia grades 6�
 
 ## Architecture — read before editing
 
-- **Standalone frontend.** `index.html` remains the published artifact (~9.4 MB), including embedded assets and the original lesson engine. Maintained additions live in `content/` and `enhancements/`; run `node content/build.mjs` and `python3 scripts/assemble.py` after editing those sources. The assembler is idempotent. The optional API is isolated in `account-service/`.
+- **Static frontend with local assets.** Publish `index.html` (~3.33 MB), `assets/`, and the external `enhancements/exams-profiles.js`, `research-features.js`, and `writing-source.js` together. Most original engine/data code remains in the HTML. Maintained additions live in `content/` and `enhancements/`; run `npm run build` after editing those sources. It assembles inline additions and externalizes image payloads idempotently. The optional API is isolated in `account-service/`.
 - **Hash routing, 19 routes**, persistent mounted views, opens on `#/home`. Mobile bottom tab bar: Home · Lessons · Practice · Cards · More. Desktop grouped rail.
 - **Local progress remains available.** The optional account service uses Cloudflare Workers Free + D1 Free. It is inactive unless `VA_ACCOUNT_CONFIG.apiBase` is configured. Account-linked sessions use tab-scoped credentials and dedicated local learner namespaces; a profile switch requires reload because the boot shim captures its namespace. Never place credentials in `va*` keys or exports.
 - **Content:** 73 lessons (G6: 21, G7: 21, G8: 31 incl. 9 Algebra I), 13 courses, 559 multiple-choice questions + 25 TEIs, 545 flashcards (521 vocab + 24 cloze) in this revision, 22 Play Labs, 7 Three.js 3D lessons, FSRS flashcard scheduling, mistake-review queue, Today's Path, SOL practice exams, mastery map, bilingual glossary (228 terms), printable worksheets + parent report.
@@ -25,9 +25,11 @@ A bilingual (English / Simplified Chinese) learning site for Virginia grades 6�
 - `vaDone.v1`, `vaFlashSrs.v1` (SM-2), `vaMistakes.v1` / `vaQE2.v1`, `vaAssessment.v1` (frozen baseline), `vaReview.v1`, FSRS keys.
 - Mastery rule: `c1-rw5-cap-e3-latest80-v1`. TEIs are excluded from mastery.
 - New stored fields must be **additive** and safely absent from older records. Never migrate, rename, or reinterpret existing keys.
+- **Choice order:** new attempts use a stable per-attempt seed and canonical answer IDs. Persisted exams retain that seed; seedless legacy records use original order. Lesson `quizAttemptClicks` is shared with the replay logger and records canonical indices in capture phase. Reopening a partial attempt retains its seed/log, while completed attempts and reassessment start fresh. Printed worksheets retain one seed across preview, language redraw, and print preparation.
 
 ## Illustrations — where they live
 
+- Image bytes now live at content-addressed `assets/art/` URLs; `assets/manifest.json` records hashes. SOL aliases reuse existing project art. Run the asset check in `npm run check` and publish assets with the HTML; copying only the HTML no longer produces a complete site.
 - `IMP_ILL` — 152 entries: 140 SVG diagrams + 12 batch-D vocabulary WebPs.
 - `IMP_COMP` — 35 diagram companions (batch E), shown beside their SVG, never replacing it.
 - `EMPTY_ILL` — 3 empty-state images. `CELEB_ILL` — 2 celebration images. `SOL_ILL` — 2 SOL practice images. Plus 4 subject banners.
@@ -74,6 +76,7 @@ of truth. The `va` CLI (`tools/va`) and the bug-fix template
 
 ## Current status (2026-11-09 release)
 
+- **Owner approved the post-release QA fixes for publication on November 9.** See `audit/QA-FIXES-2026-11-09.md`: assessment answer-order and replay fixes, bilingual content corrections, restored SOL artwork, smaller initial HTML, and regression coverage. These changes add no sections, paid services, or account-backend changes. The `Site QA` workflow validates branches/PRs only; it is not a deployment dependency or proof that the browser suite has run. Check the actual workflow run and Pages status for deployment evidence.
 - Cleanup + graphics run complete and live: 4 subject banners, 12 vocabulary illustrations, 35 diagram companions (+ Daily Review fix), 3 empty-state images, 2 celebrations, 2 SOL images.
 - **Account backend deployed and verified on Workers Free + D1 Free.** Owner selected parent-managed usernames and strong generated codes, free tier only, and GitHub as source. Current service supports one owner-managed household (up to 12 learners), recovery, revocation, isolated progress, and explicit concurrent-save conflicts. Owner publication approval and Free-plan verification were completed November 9. The production endpoint is https://virginia-learning-accounts.erpanelyar.workers.dev. First parent registration is reserved for the owner; private setup material is outside Git. No payment method or subscription is part of this work.
 - **Improvement backlog (Astra, ranked 2026-11-07):** 14 ideas. Build-first pick: (1) Find the Missing Step — prerequisite repair route, (2) Debug This Answer — misconception lab, (3) Protect My Progress — backup/restore. Six backlog items were dropped as not worth building (lab missions, quests, portfolio, study partners, downloadable packs, tutor prompts). Ask the owner which batch to build; never assume the top-N is the job.
