@@ -1,10 +1,10 @@
 # Virginia Grades 6–8 Learning Site
 
-Bilingual English / Simplified Chinese learning for grades 6–8. The unpublished revision retains the existing 73 lessons and 19 views, with 559 multiple-choice questions, 25 technology-enhanced items, 545 flashcards, and 22 Play Labs.
+Bilingual English / Simplified Chinese learning for grades 6–8. This revision retains the existing 73 lessons and 19 views, with 559 multiple-choice questions, 25 technology-enhanced items, 545 flashcards, and 22 Play Labs.
 
 [Live site](https://erpan219.github.io/virginia-grades-6-8-learning-site/) · [Handoff](HANDOFF.md) · [Audit](audit/REPORT.md)
 
-**GitHub is the authoritative source**, per the owner's November 9, 2026 instruction. Muse is the historical origin. The owner approved this revision on November 9, conditional on verifying free account hosting before publication. That plan verification remains pending; the live site is unchanged.
+**GitHub is the authoritative source**, per the owner's November 9, 2026 instruction. Muse is the historical origin. The owner approved this revision on November 9, 2026 and confirmed Workers Free is active with no payment method on file. No paid services or upgrades were enabled.
 
 ## Edit and verify
 
@@ -22,11 +22,11 @@ Open `http://127.0.0.1:4173/` for the local-only site. Test 1440px desktop and 3
 
 ## Optional accounts
 
-Local profiles continue to work without a server. The separate [account service](account-service/README.md) implements one parent-managed household, learner usernames and generated secure codes, and cross-device saved progress. It is tested locally and **not deployed**.
+Local profiles continue to work without a server. The separate [account service](account-service/README.md) implements one parent-managed household, learner usernames and generated secure codes, and cross-device saved progress. The tested service is deployed on Cloudflare Workers Free with D1 Free.
 
-The [account guide](account-service/ACCOUNT-GUIDE.md) explains parent setup, learner sign-in, local-progress import, syncing, and recovery. The private owner setup code must be delivered separately after deployment; no production parent account has been created.
+The [account guide](account-service/ACCOUNT-GUIDE.md) explains parent setup, learner sign-in, local-progress import, syncing, and recovery. The private owner setup code is delivered separately; the first production parent account is reserved for the owner to create.
 
-Only Cloudflare **Workers Free + D1 Free** are permitted. No paid upgrades, payment method, email service, or automatic provisioning. Leave `VA_ACCOUNT_CONFIG.apiBase` unset until the approved backend is ready; the published artifact currently has no production API configured.
+Only Cloudflare **Workers Free + D1 Free** are permitted. No paid upgrades, payment method, email service, or automatic provisioning. The public endpoint is maintained in `enhancements/account-config.js` and enabled only on the production GitHub Pages origin. No credentials belong in frontend code.
 
 For local account testing, run `npm ci`, `npm test`, and `npm run dev` inside `account-service/`, then open `http://127.0.0.1:4173/accounts-preview`. This preview path injects only the loopback test API; it must not be used as a production configuration.
 

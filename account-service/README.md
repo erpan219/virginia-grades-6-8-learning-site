@@ -1,10 +1,10 @@
-# Account and progress service — unpublished
+# Account and progress service — Cloudflare Free
 
-This separate Cloudflare Worker adds one parent-managed household to the existing GitHub Pages site. It does not replace the local learner-profile format or create new lesson sections. GitHub is the source of truth, per the owner's November 9 instruction. **The owner approved publication on November 9, conditional on Free-plan verification. That verification is pending. No Cloudflare resource has been created or deployed by this work.**
+This separate Cloudflare Worker adds one parent-managed household to the existing GitHub Pages site. It does not replace the local learner-profile format or create new lesson sections. GitHub is the source of truth, per the owner's November 9 instruction. **The owner approved publication on November 9, 2026 and supplied a dashboard screenshot confirming Workers Free active and no payment method. The isolated Worker and D1 database are now deployed.**
 
 See the [account guide](ACCOUNT-GUIDE.md) for parent and learner instructions. Leave production parent registration unclaimed for the owner and deliver the private setup code separately.
 
-## What works locally
+## Features
 
 - One parent registers with an owner-issued setup code. The server generates a sign-in code and a separate one-use recovery code.
 - The parent creates up to 12 learners, renames/disables them, resets their codes, and can read or update their progress. Learners cannot manage accounts or access each other's data.
@@ -70,9 +70,11 @@ Errors have `{error:{code,message,...}}`. `409 revision_conflict` includes `curr
 
 ## Approval and deployment handoff
 
-The owner selected **Erpanelyar@gmail.com's Account** for this service. Before publication, confirm in that account's dashboard that **Workers Free** is active; that verification is still pending. The connected OAuth account can read resources, but cannot read billing subscriptions: Cloudflare returns a Billing Read permission error. No service has been deployed. A `default_usage_model: standard` response does **not** establish that the billing plan is Free.
+The owner selected **Erpanelyar@gmail.com's Account** and supplied the Free-plan evidence on November 9. The connector cannot read billing subscriptions; verification came from the owner and dashboard screenshot, not from `default_usage_model: standard`.
 
-After the owner approves the reviewed site and account feature:
+Production API: `https://virginia-learning-accounts.erpanelyar.workers.dev`. D1 UUID: `2f34707d-9c4a-4593-9b45-788031cfba70`. The deployment used the authenticated Cloudflare connector to upload the exact tested bundle with secret bindings, followed by enabling workers.dev and the six-hour cleanup schedule. The CLI was not authenticated. Six public endpoint checks passed; parent registration remains unclaimed. See [deployment evidence](../audit/evidence/deployed-api-checks.json).
+
+For a future fresh deployment or recovery, use the following CLI procedure after the required approval and Free-plan verification:
 
 1. Use an authenticated `cf` session for **Erpanelyar@gmail.com's Account**, after confirming its Free plan. Set `CLOUDFLARE_ACCOUNT_ID` to that account. `cf auth login` is interactive; do not ask the owner to paste a token into chat.
 2. Create a new, isolated D1 database with `cf d1 create --name virginia-learning-accounts`. Capture the returned database UUID in `D1_DATABASE_ID`; never reuse an unrelated database.

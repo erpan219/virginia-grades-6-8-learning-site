@@ -1977,6 +1977,18 @@ table{max-width:100%}
 
 </style>
 <!-- VA:accounts-css:END -->
+<!-- VA:account-config:START -->
+<script>
+/* Public service address only. Credentials belong in Cloudflare secret bindings.
+   Local previews stay local unless scripts/preview.py explicitly enables them. */
+if (location.origin === 'https://erpan219.github.io') {
+  window.VA_ACCOUNT_CONFIG = {
+    apiBase: 'https://virginia-learning-accounts.erpanelyar.workers.dev'
+  };
+}
+
+</script>
+<!-- VA:account-config:END -->
 </head>
 <body>
 <div id="appLoading" role="status" aria-live="polite">

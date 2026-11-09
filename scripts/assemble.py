@@ -21,6 +21,9 @@ def put(name, value, anchor, before=True, javascript=False):
             pos += len(anchor)
         html = html[:pos] + block + "\n" + html[pos:]
 
+config = ROOT / "enhancements" / "account-config.js"
+if config.exists():
+    put("account-config", '<script>\n' + config.read_text() + '\n</script>', '</head>')
 for name in ["design", "accounts"]:
     path = ROOT / "enhancements" / f"{name}.css"
     if path.exists():

@@ -1,6 +1,6 @@
-# Site audit and unpublished revision — November 9, 2026
+# Site audit and approved release — November 9, 2026
 
-**Status: reviewed and approved for publication, pending Free-plan verification. No merge, Pages publication, production database, or Worker deployment.** GitHub is now the authoritative source by owner instruction. All account hosting must remain on Free plans. The owner selected **Erpanelyar@gmail.com's Account**; billing-plan verification is still required because the connector lacks Billing Read. On November 9 the owner approved the reviewed version, conditional on that verification, and later said they were away from the Mac. No further approval of this same revision is needed. Preserve the approval while waiting for dashboard access.
+**Status: reviewed release approved; free account backend deployed and verified.** GitHub is the authoritative source. The owner selected **Erpanelyar@gmail.com's Account**, approved publication, and supplied a dashboard screenshot showing **Workers Free — Active** with **no payment method on file**. No paid services or upgrades were enabled. GitHub Pages publishes from `main` at the repository root; no workflow or hosting-source change is needed.
 
 ## Scope and evidence
 
@@ -57,7 +57,7 @@ The optional backend uses **Cloudflare Workers Free + D1 Free**, with no email s
 
 Tokens stay in tab-scoped sessionStorage and are excluded from progress/backup fields. Account data uses dedicated learner namespaces; switching reloads the document because the original storage shim captures its active namespace. Import into an empty account is explicit. Conflicting saves require choosing a copy and do not silently merge or overwrite histories. Offline changes remain local, and an explicit local sign-out parks them outside the normal learner list for later same-account recovery.
 
-There is no production endpoint in `index.html`. `scripts/preview.py` injects only the local API for `/accounts-preview`. Deployment instructions and security/cost limits are in [account-service/README.md](../account-service/README.md).
+The production endpoint is configured through `enhancements/account-config.js` and activates only on the GitHub Pages origin. `scripts/preview.py` injects only the local API for `/accounts-preview`. Deployment instructions and security/cost limits are in [account-service/README.md](../account-service/README.md).
 
 During the real offline test, a local-only Miniflare 5 configuration error was found: the old persistence option was ignored. Disposable QA accounts were lost on the first emulator restart. This was fixed with `resourcePersistencePath`, and a process-restart regression now verifies credentials, sessions, and saved progress survive. No production service or real learner data was affected.
 
@@ -68,7 +68,7 @@ After that fix, the browser test stopped the API, completed a lesson offline, an
 - **17 frontend account tests:** isolation, staged imports/rollback, aliases, credential exclusion, save conflicts, expiry, offline parking/resume, confirmation focus/cancel.
 - **10 backend integration tests:** registration, auth/recovery/revocation, ownership, concurrency, validation, CORS/rate limits/caps, actual exported QA snapshot roundtrip, and persistent server restart.
 - **6 flashcard regression tests:** scope totals, due/mastered behavior, cloze/extra report counts, no duplicate IDs, initial refresh.
-- Content validation passes; **61 executable/lazy-lab script blocks parse**; `git diff --check` passes.
+- Content validation passes; **62 executable/lazy-lab script blocks parse**; `git diff --check` passes.
 - Worker production build passes with Node 24.22.0. The system default Node 20 is too old for the pinned build CLI; follow the documented supported versions.
 
 Reproduce from repository root:
@@ -83,11 +83,11 @@ node --test scripts/tests/flash-stats.mjs enhancements/tests/accounts.test.cjs
 
 Run `npm ci`, `npm test`, and `npm run build` in `account-service/` using a supported Node version. Integration tests need permission to bind loopback ports.
 
-## Remaining publication gates and limitations
+## Publication verification and limitations
 
 1. **Complete:** owner reviewed the screenshots/preview and explicitly approved publication on November 9.
-2. Verify the selected Cloudflare account is on Workers Free/D1 Free; do not upgrade, attach a payment method, or deploy on an unverified paid plan. Free quota exhaustion must leave local learning available.
-3. Create the isolated approved backend, configure real secrets outside Git, then verify the deployed auth/sync flow before enabling the production API URL and publishing the reviewed Pages revision.
-4. Confirm current Pages publishing source/workflow and the live front door after publication.
+2. **Complete:** owner supplied Workers Free evidence with no payment method. The isolated D1 and Worker were created under that account. Free quota exhaustion leaves local learning available.
+3. **Complete:** exact bundled Worker passed all 10 backend tests; secrets were created outside Git and installed as secret bindings. Six deployed health/access-control checks passed ([results](evidence/deployed-api-checks.json)). Production users and parent claims remain zero for owner setup. Authenticated save/restore was tested locally, not against a claimed production family.
+4. Pages source is confirmed as `main:/`, HTTPS enforced. After pushing the approved revision, verify a successful Pages deployment and the published frontend/account entry point.
 
 The standalone HTML is approximately **9.4 MB** with embedded assets. This remains the main loading/maintenance concern; the revision avoids a risky framework or asset migration. There is no measured mobile-network performance guarantee. A later approved optimization can separate/cache existing assets without adding sections.

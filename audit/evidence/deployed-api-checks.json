@@ -1,0 +1,44 @@
+[
+  {
+    "check": "health",
+    "status": 200,
+    "expected": 200,
+    "pass": true,
+    "body": "{\"status\":\"ok\",\"version\":1}"
+  },
+  {
+    "check": "allowed preflight",
+    "status": 204,
+    "expected": 204,
+    "pass": true,
+    "body": ""
+  },
+  {
+    "check": "untrusted origin",
+    "status": 403,
+    "expected": 403,
+    "pass": true,
+    "body": "{\"error\":{\"code\":\"origin_not_allowed\",\"message\":\"This site is not allowed to use account sync.\"}}"
+  },
+  {
+    "check": "unauthenticated access",
+    "status": 401,
+    "expected": 401,
+    "pass": true,
+    "body": "{\"error\":{\"code\":\"sign_in_required\",\"message\":\"Please sign in.\"}}"
+  },
+  {
+    "check": "invalid login",
+    "status": 401,
+    "expected": 401,
+    "pass": true,
+    "body": "{\"error\":{\"code\":\"invalid_credentials\",\"message\":\"The username or code is not valid.\"}}"
+  },
+  {
+    "check": "invalid setup code",
+    "status": 401,
+    "expected": 401,
+    "pass": true,
+    "body": "{\"error\":{\"code\":\"invalid_credentials\",\"message\":\"The setup code is not valid.\"}}"
+  }
+]
