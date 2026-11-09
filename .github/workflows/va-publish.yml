@@ -1,0 +1,19 @@
+name: Publish validated VA build
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          test "$(git rev-parse HEAD:index.html)" = 0c369256fa97f2953523224bb2845533255f0193
+          curl --fail --location --proto '=https' --proto-redir '=https' 'https://muse.ai/files/1219155904625602/1153744320796122/ilw0s95lnt5bvlixd6c64ess/virginia-grades-6-8-learning-site.html' -o /tmp/index.html
+          echo 'f2844cfbd46e6fea0ff8a0aa93274e004eb90aaae6dfd7ceb2650d29bd4af5e8  /tmp/index.html' | sha256sum --check
+          cp /tmp/index.html index.html
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m "Publish validated VA build"
+          git push
