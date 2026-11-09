@@ -24,7 +24,7 @@ The parent can use **Open progress** for a learner, then **Open account progress
 
 - **Move existing local work into a new account:** first select the correct local learner on this device. When opening an empty learner account, explicitly check **Copy this device’s current learner progress into this empty account**, then select **Open account progress**. This option is available only for an empty account; the original local learner stays available.
 - **Continue on another device:** open the same site, go to **More → Learners**, and sign in with the learner's username and code. Select **Open account progress** to load the saved work. Do not create another account for the same learner.
-- **Before changing devices:** select **Save now** and wait for **Progress saved to your account.** A message such as **Saved here · sync pending** means the latest changes have not reached the cloud. Use **Check for newer save** before continuing on a device you have used before.
+- **Before changing devices:** select **Save now** and wait for **Saved to your account**. **Syncing…**, **Offline — waiting to sync**, or **Could not sync — retry** means you should keep this browser open and wait for a confirmed save. Use **Check for newer save** before continuing on a device you have used before.
 
 ## Offline work and conflicting saves
 

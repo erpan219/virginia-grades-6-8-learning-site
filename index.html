@@ -24912,7 +24912,8 @@ if (state.enabled){
   var VP, panel, home, dialog, timer, watching = false, savePromise;
   var state = { session: null, keys: [], maxBytes: 1048576, target: null, binding: null,
     remote: null, conflict: false, status: '', tone: '', busy: false, mode: 'login',
-    secrets: null, learners: [], importing: false, pending: false, ready: false, leaving: false };
+    secrets: null, learners: [], importing: false, pending: false, ready: false, leaving: false,
+    syncChecked: false, saving: false, syncError: null, syncMessage: false };
   function t(en, zh) {
     var lang = document.documentElement.lang;
     return lang.indexOf('zh') === 0 ? zh : (document.body.classList.contains('bi-mode') ? en + ' · ' + zh : en);
@@ -25037,10 +25038,27 @@ if (state.enabled){
     return pair ? t(pair[0], pair[1]) : t('The action could not be completed. Your local progress is preserved. Please retry.', '操作未完成。本地进度已保留，请重试。');
   }
   function setStatus(text, tone) {
+    state.syncMessage = false;
     state.status = text; state.tone = tone || '';
     var n = panel && panel.querySelector('.lac-status');
     if (n) { n.textContent = text; n.className = 'lac-status ' + (tone || ''); n.setAttribute('role', tone === 'error' ? 'alert' : 'status'); }
     updateChrome();
+  }
+  function syncPresentation() {
+    if (!active()) return { text: t('Saved on this device', '保存在这台设备上'), tone: '' };
+    if (!state.session || !state.ready) return { text: t('Sign in to resume syncing', '请登录以恢复同步'), tone: '' };
+    if (state.conflict) return { text: t('Sync needs attention', '同步需要处理'), tone: 'error' };
+    if (navigator.onLine === false) return { text: state.pending ? t('Offline — waiting to sync', '已离线 — 等待同步') : t('Offline — sync paused', '已离线 — 同步已暂停'), tone: '' };
+    if (state.saving) return { text: t('Syncing…', '正在同步…'), tone: '' };
+    if (state.syncError) return { text: t('Could not sync — retry', '无法同步 — 请重试'), tone: 'error' };
+    if (!state.syncChecked || !state.remote) return { text: t('Checking account save…', '正在检查账户存档…'), tone: '' };
+    if (state.remote.revision !== state.binding.revision) return { text: t('Newer account save available', '有更新的账户存档'), tone: '' };
+    if (state.pending) return { text: t('Syncing…', '正在同步…'), tone: '' };
+    return { text: t('Saved to your account', '已保存到你的账户'), tone: 'success' };
+  }
+  function showSyncStatus() {
+    var status = syncPresentation();
+    setStatus(status.text, status.tone); state.syncMessage = true;
   }
   function fail(error) { setStatus(message(error), 'error'); }
   async function api(path, method, data, anonymous) {
@@ -25076,6 +25094,7 @@ if (state.enabled){
     finally { state.busy = false; if (panel) panel.removeAttribute('aria-busy'); }
   }
   async function refreshIdentity() {
+    state.syncChecked = false;
     var value = await api('/v1/me');
     if (!value.user || !Array.isArray(value.progressKeys) || !value.progressKeys.length) throw new Error('invalid_snapshot');
     state.session.user = value.user; state.keys = value.progressKeys.slice();
@@ -25090,6 +25109,7 @@ if (state.enabled){
     state.session = { token: value.token, expiresAt: value.expiresAt, user: value.user };
     state.target = value.user.role === 'learner' ? value.user : null;
     state.remote = null; state.binding = null; state.conflict = false; state.importing = false; state.pending = false;
+    state.syncChecked = false; state.syncError = null;
     persistSession();
     state.secrets = value.signInCode ? { username: value.user.username, signInCode: value.signInCode, recoveryCode: value.recoveryCode } : null;
     await refreshIdentity();
@@ -25097,19 +25117,21 @@ if (state.enabled){
     render();
   }
   async function inspectRemote() {
-    state.remote = validateSnapshot(await api(progressPath()));
-    if (active()) {
-      var hash = await fingerprint(capture(state.binding.profileId, true));
-      state.pending = hash !== state.binding.lastHash;
-      state.binding.pending = state.pending;
-      state.conflict = state.pending && state.remote.revision !== state.binding.revision;
-      persistBinding();
-      if (state.conflict) setStatus(message(new Error('revision_conflict')), 'error');
-      else if (state.remote.revision !== state.binding.revision) setStatus(t('A newer cloud save is available. Load it below to continue on this device.', '有更新的云端存档。请在下方加载后继续。'));
-      else if (state.pending) { setStatus(t('Changes are saved on this device and waiting to sync.', '更改已保存在本机，正在等待同步。')); queueSave(); }
-      else setStatus(t('Cloud save is up to date.', '云端存档已是最新。'), 'success');
-    }
-    render();
+    state.syncChecked = false; state.syncError = null; updateChrome();
+    try {
+      state.remote = validateSnapshot(await api(progressPath()));
+      if (active()) {
+        var current = capture(state.binding.profileId, true), hash = await fingerprint(current);
+        state.pending = hash !== state.binding.lastHash || stable(current) !== stable(capture(state.binding.profileId, true));
+        state.binding.pending = state.pending;
+        state.conflict = state.pending && state.remote.revision !== state.binding.revision;
+        persistBinding(); state.syncChecked = true;
+        if (state.conflict) setStatus(message(new Error('revision_conflict')), 'error');
+        else if (state.remote.revision !== state.binding.revision) setStatus(t('A newer cloud save is available. Load it below to continue on this device.', '有更新的云端存档。请在下方加载后继续。'));
+        else { showSyncStatus(); if (state.pending) queueSave(); }
+      }
+      render();
+    } catch (e) { state.syncError = e.code || e.message; updateChrome(); throw e; }
   }
   async function save(force) {
     if (savePromise) return savePromise;
@@ -25118,8 +25140,13 @@ if (state.enabled){
     if (state.conflict && !force) throw new Error('revision_conflict');
     savePromise = (async function () {
       var data = capture(state.binding.profileId, true), hash = await fingerprint(data);
-      if (hash === state.binding.lastHash && !force) { state.pending = false; return true; }
-      setStatus(t('Saving progress to your account…', '正在把进度保存到账户…'));
+      if (hash === state.binding.lastHash && !force) {
+        state.pending = stable(data) !== stable(capture(state.binding.profileId, true));
+        state.binding.pending = state.pending; persistBinding(); showSyncStatus();
+        if (state.pending) queueSave();
+        return !state.pending;
+      }
+      state.saving = true; state.syncError = null; showSyncStatus();
       var expected = force && state.remote ? state.remote.revision : state.binding.revision;
       try {
         var saved = await api(progressPath(), 'PUT', { revision: expected, data: data });
@@ -25127,22 +25154,24 @@ if (state.enabled){
         state.binding.revision = saved.revision; state.binding.lastHash = hash; state.binding.updatedAt = saved.updatedAt;
         state.remote = { revision: saved.revision, data: data, updatedAt: saved.updatedAt };
         state.conflict = false;
-        state.pending = (await fingerprint(capture(state.binding.profileId, true))) !== hash;
+        var latest = capture(state.binding.profileId, true), latestHash = await fingerprint(latest);
+        state.pending = latestHash !== hash || stable(latest) !== stable(capture(state.binding.profileId, true));
         state.binding.pending = state.pending; persistBinding();
-        setStatus(state.pending ? t('Saved. More recent changes are waiting to sync.', '已保存，还有更新的更改等待同步。') : t('Progress saved to your account.', '进度已保存到账户。'), 'success');
+        state.syncChecked = true; state.saving = false; showSyncStatus();
         if (state.pending) queueSave();
         return !state.pending;
       } catch (e) {
+        state.saving = false; state.syncError = e.code || e.message;
         state.pending = true; state.binding.pending = true; persistBinding();
         if (e.status === 409) { state.conflict = true; state.remote = validateSnapshot(await api(progressPath())); render(); }
         fail(e); throw e;
       }
     })();
-    try { return await savePromise; } finally { savePromise = null; }
+    try { return await savePromise; } finally { savePromise = null; state.saving = false; updateChrome(); }
   }
   function queueSave() {
     clearTimeout(timer);
-    if (state.leaving || state.conflict || !state.ready || !active()) return;
+    if (state.leaving || state.conflict || !state.ready || !active() || navigator.onLine === false) return;
     timer = setTimeout(function () { save(false).catch(function () {}); }, 1800);
   }
   function lock(fn) {
@@ -25444,7 +25473,8 @@ if (state.enabled){
     panel.replaceChildren();
     panel.append(el('h3', t('Accounts & cloud progress', '账户与云端进度'), { id: 'lac-heading' }));
     panel.append(el('p', t('Sign in to keep a learner’s saved work available on another device. Parent-managed accounts do not require an email address.', '登录后可在其他设备继续使用已保存的学习成果。由家长管理的账户不需要邮箱。'), { class: 'lac-intro' }));
-    panel.append(el('p', state.status, { class: 'lac-status ' + state.tone, role: state.tone === 'error' ? 'alert' : 'status', 'aria-live': 'polite', 'aria-atomic': 'true' }));
+    var status = state.syncMessage ? syncPresentation() : { text: state.status, tone: state.tone };
+    panel.append(el('p', status.text, { class: 'lac-status ' + status.tone, role: status.tone === 'error' ? 'alert' : 'status', 'aria-live': 'polite', 'aria-atomic': 'true' }));
     if (state.secrets) { renderSecrets(); updateChrome(); return; }
     if (!state.session || !state.ready) renderAuth();
     else {
@@ -25463,14 +25493,14 @@ if (state.enabled){
     var linked = active(); document.body.classList.toggle('lac-cloud-active', linked);
     if (linked) {
       var chip = document.getElementById('vaSaveChip');
-      var text = !state.ready ? t('Sign in to sync', '请登录以同步') : state.conflict ? t('Sync needs attention', '同步需要处理') : state.pending ? t('Saved here · sync pending', '已存本机 · 等待同步') : t('Cloud progress connected', '已连接云端进度');
+      var text = syncPresentation().text;
       if (chip && chip.textContent !== text) chip.textContent = text;
     }
   }
   /* Update existing privacy/storage copy at its source when possible.
      Text-only replacement also covers strings built inside closed modules.
      Activity/lab notes about unsaved in-page tables are deliberately excluded. */
-  var cloudNote = ['Saved on this device, with account sync. Check Accounts for the latest confirmed cloud save.', '保存在本机，并通过账户同步。请在“账户”中查看最近确认的云端保存状态。'];
+  var cloudNote = ['Your progress syncs automatically to your account. Check the save status before switching devices.', '进度会自动同步到账户。切换设备前请确认保存状态。'];
   var cloudReport = ['This report reflects this device’s current account copy. Sync before comparing it with another device.', '本报告反映此设备上的当前账户副本。与其他设备比较前请先同步。'];
   function accountCopy() {
     if (window.I18N && I18N.en && I18N.zh) {
@@ -25496,16 +25526,22 @@ if (state.enabled){
   function replaceAccountText(root) {
     if (!root || !active()) return;
     var replacements = [
+      ['No sign-up and nothing to install. Do these three steps once, and the fieldbook starts keeping your record on this device.', 'Nothing to install. Follow these three steps to start learning. Check the save status to confirm your progress has synced.'],
+      ['无需注册，也不用安装。完成这三步，笔记本就会开始在这台设备上记录你的学习。', '不用安装。完成这三步即可开始学习。请查看保存状态，确认进度已同步。'],
+      ['When the check holds, mark the lesson done — your record is saved on this device.', 'When the check holds, mark the lesson done — your progress will sync to your account. Check the save status before switching devices.'],
+      ['测验通过后标记完成——记录保存在这台设备上。', '测验通过后标记完成——进度会同步到账户。切换设备前请确认保存状态。'],
       ['Saved only on this device — nothing is uploaded.', cloudNote[0]],
-      ['Saved on this device — there is no account and nothing syncs. Clearing browser or site data, switching browser profiles, or losing this device can remove your progress, so export a backup below from time to time.', 'Progress is saved on this device and synced to your account. Check Accounts for the latest confirmed cloud save. Export a backup before clearing browser data, especially when sync is pending.'],
-      ['保存在这台设备上——没有账号，也没有任何同步。清除浏览器或网站数据、更换浏览器配置文件，或丢失这台设备，都可能删除你的进度，所以请时常在下方导出一份备份。', '进度保存在本机，并同步到账户。请在“账户”中查看最近确认的云端保存。清除浏览器数据前请先导出备份，尤其是在等待同步时。'],
+      ['Saved on this device — there is no account and nothing syncs. Clearing browser or site data, switching browser profiles, or losing this device can remove your progress, so export a backup below from time to time.', 'Your progress syncs automatically to your account. Wait for “Saved to your account” before switching devices. You can also export an extra backup below. Keep offline changes in this browser until syncing finishes.'],
+      ['保存在这台设备上——没有账号，也没有任何同步。清除浏览器或网站数据、更换浏览器配置文件，或丢失这台设备，都可能删除你的进度，所以请时常在下方导出一份备份。', '进度会自动同步到账户。看到“已保存到你的账户”后再切换设备。也可以在下方导出额外备份。离线更改在同步完成前需要保留在此浏览器中。'],
       ['只保存在这台设备上——不会上传到任何地方。', cloudNote[1]],
       ['Computed on this device — nothing is uploaded.', cloudReport[0]],
       ['在这台设备上计算——不会上传任何内容。', cloudReport[1]],
+      ['Based on learning activity saved on this device.', cloudReport[0]],
+      ['根据保存在此设备上的学习活动生成。', cloudReport[1]],
       ['Your answers are saved on this device only.', cloudNote[0]],
       ['你的答案只保存在这台设备上。', cloudNote[1]],
-      ['Exam data is stored only in this browser on this device. Clearing browser data may erase it.', 'Exam progress is saved on this device and synced to the account. Unsynced changes can be lost if browser data is cleared.'],
-      ['模拟考试数据仅保存在此设备的当前浏览器中。清除浏览器数据可能会将其删除。', '模拟考试进度保存在本机并同步到账户。清除浏览器数据可能导致尚未同步的更改丢失。'],
+      ['Exam data is stored only in this browser on this device. Clearing browser data may erase it.', 'Exam progress syncs to your account. Wait for save confirmation before switching devices. Keep offline work in this browser until syncing finishes.'],
+      ['模拟考试数据仅保存在此设备的当前浏览器中。清除浏览器数据可能会将其删除。', '模拟考试进度会同步到账户。切换设备前请确认已保存。离线成果在同步完成前需要保留在此浏览器中。'],
       ['Learners are stored only in this browser. They are not accounts or password-protected.', 'You are studying in an account-linked profile. Local browser copies are not password-protected; sign out when using a shared device.'],
       ['学习者资料仅保存在当前浏览器中，不是账户，也没有密码保护。', '当前使用与账户关联的学习资料。本地浏览器副本不受密码保护；使用共用设备后请退出。'],
       ['This report reflects learning saved on THIS device and browser only — nothing is uploaded, and progress on another device will look different.', cloudReport[0]],
@@ -25519,9 +25555,15 @@ if (state.enabled){
       ['任何内容都不会上传。', '使用账户学习资料时，已保存的进度会同步到账户。']
     ];
     function replace(node) {
-      if (!node.parentElement || node.parentElement.closest('script,style,textarea,input,code,.lac-panel')) return;
+      if (!node.parentElement || node.parentElement.closest('script,style,textarea,input,code,.lac-panel,#vaSaveChip')) return;
       var text = node.nodeValue, next = text;
       replacements.forEach(function (pair) { next = next.split(pair[0]).join(pair[1]); });
+      /* Legacy result/save badges acknowledge local writes, not cloud writes.
+         Point to the dynamic status instead of promising an unconfirmed backup. */
+      if (next.trim() === 'Saved on this device') next = 'Check account save status';
+      else if (next.trim() === '已保存在此设备上' || next.trim() === '已保存在此设备') next = '请查看账户保存状态';
+      else if (/^Saved on this device for .+\.$/.test(next.trim())) next = next.trim().replace(/^Saved on this device for (.+)\.$/, 'Account progress for $1. Check the save status.');
+      else if (/^已为学习者.+保存在此设备上。$/.test(next.trim())) next = next.trim().replace(/^已为学习者(.+)保存在此设备上。$/, '学习者$1的账户进度。请查看保存状态。');
       if (next !== text) node.nodeValue = next;
     }
     if (root.nodeType === 3) { replace(root); return; }
@@ -25561,13 +25603,13 @@ if (state.enabled){
         if (this === localStorage && active() && isProgressKey(String(key), state.binding.profileId)) {
           state.pending = true; state.binding.pending = true;
           try { persistBinding(); } catch (_) { setStatus(message(new Error('local_storage')), 'error'); }
-          setStatus(t('Saved on this device · waiting to sync', '已保存到本机 · 等待同步')); queueSave();
+          showSyncStatus(); queueSave();
         }
         return result;
       };
     });
-    window.addEventListener('online', function () { if (state.pending) queueSave(); });
-    window.addEventListener('offline', function () { if (active()) setStatus(message(new Error('network')), 'error'); });
+    window.addEventListener('online', function () { if (active()) showSyncStatus(); if (state.pending) queueSave(); });
+    window.addEventListener('offline', function () { if (active()) showSyncStatus(); });
     window.addEventListener('beforeunload', function (event) { if (!state.leaving && active() && state.pending) { event.preventDefault(); event.returnValue = ''; } });
     document.addEventListener('click', function (event) {
       var b = event.target.closest && event.target.closest('#pfSwitch');

@@ -57,19 +57,22 @@ function harness(options = {}) {
     rawRem: key => localStorage.removeItem(key), allKeys: () => [...localStorage.data.keys()],
     isLogical: key => key.startsWith('va') && !key.startsWith('vaP_') && key !== REG };
   const window = { VA_ACCOUNT_CONFIG: { apiBase: endpoint }, addEventListener() {} };
-  const context = { window, document, localStorage, sessionStorage, Storage, URL, TextEncoder, crypto: webcrypto, AbortController, TypeError,
-    navigator: { locks: { request: async (_name, fn) => fn() } },
+  const crypto = { randomUUID: () => webcrypto.randomUUID(), subtle: { digest: async (...args) => {
+    const value = await webcrypto.subtle.digest(...args); if (options.afterDigest) options.afterDigest(); return value;
+  } } };
+  const context = { window, document, localStorage, sessionStorage, Storage, URL, TextEncoder, crypto, AbortController, TypeError,
+    navigator: { onLine: true, locks: { request: async (_name, fn) => fn() } },
     setTimeout(fn) { const id = ++nextTimer; timers.set(id, fn); return id; }, clearTimeout(id) { timers.delete(id); },
     location: { reload() { reloads++; } },
     fetch: async (url, init) => { network.push({ url, init }); if (options.fetch) return options.fetch(url, init); throw new TypeError('offline'); } };
   vm.createContext(context);
-  const hook = 'window.test = {state, localSignOut, resumeDeviceCopy, bindActiveDeviceCopy, bindings, confirmAction, activate, save, api, capture, fingerprint, stable, validateSnapshot, setVP:function(value){VP=value;}};';
+  const hook = 'window.test = {state, localSignOut, resumeDeviceCopy, bindActiveDeviceCopy, bindings, confirmAction, activate, save, api, capture, fingerprint, stable, validateSnapshot, syncPresentation, inspectRemote, queueSave, setVP:function(value){VP=value;}};';
   vm.runInContext(source.replace("  if (document.readyState === 'complete') init();", hook + "\n  if (document.readyState === 'complete') init();"), context);
   const api = window.test; api.setVP(VP);
   Object.assign(api.state, { session: { token: 'synthetic-token', user: { id: 'learner-1', role: 'learner' } },
     target: { id: 'learner-1', username: 'synthetic_learner', displayName: 'Cloud learner' },
     binding, keys: ['vaProgress.v1', 'va-ll:f08:v1'], ready: true, pending: true });
-  return { api, VP, localStorage, sessionStorage, document, trigger, network, timers, get reloads() { return reloads; } };
+  return { api, VP, localStorage, sessionStorage, document, navigator: context.navigator, trigger, network, timers, get reloads() { return reloads; } };
 }
 const response = (status, value) => ({ ok: status >= 200 && status < 300, status, json: async () => value });
 
@@ -146,6 +149,7 @@ test('save uses revision compare-and-swap and marks only server-confirmed progre
   const h = harness({ fetch: async (_url, init) => { assert.equal(JSON.parse(init.body).revision, 3); return response(200, { revision: 4, updatedAt: '2026-11-09' }); } });
   assert.equal(await h.api.save(false), true); assert.equal(h.api.state.binding.revision, 4);
   assert.equal(h.api.state.pending, false); assert.equal(h.api.bindings()[CLOUD_KEY].pending, false);
+  assert.equal(h.api.syncPresentation().text, 'Saved to your account');
   assert.equal(h.network[0].init.headers.Authorization, 'Bearer synthetic-token');
 });
 test('revision conflict preserves device history and does not advance stored revision', async () => {
@@ -153,21 +157,83 @@ test('revision conflict preserves device history and does not advance stored rev
   await assert.rejects(() => h.api.save(false), /revision_conflict/);
   assert.equal(h.api.state.conflict, true); assert.equal(h.api.state.binding.revision, 3); assert.equal(h.api.state.pending, true);
   assert.equal(h.localStorage.getItem('vaProgress.v1'), '{"score":7}'); assert.equal(h.api.state.remote.revision, 5);
+  assert.equal(h.api.syncPresentation().text, 'Sync needs attention');
 });
 test('offline save keeps pending data locally', async () => {
   const h = harness(); await assert.rejects(() => h.api.save(false), /network/);
   assert.equal(h.api.state.pending, true); assert.equal(h.api.bindings()[CLOUD_KEY].pending, true);
   assert.equal(h.localStorage.getItem('vaProgress.v1'), '{"score":7}');
+  assert.equal(h.api.syncPresentation().text, 'Could not sync — retry');
+  h.navigator.onLine = false;
+  assert.equal(h.api.syncPresentation().text, 'Offline — waiting to sync');
+  h.api.queueSave(); assert.equal(h.timers.size, 0, 'known offline state waits for reconnection');
 });
 test('new edits during save remain pending after acknowledgement', async () => {
   let h; h = harness({ fetch: async () => { h.localStorage.setItem('vaProgress.v1', '{"score":8}'); return response(200, { revision: 4 }); } });
   assert.equal(await h.api.save(false), false); assert.equal(h.api.state.pending, true); assert.equal(h.api.bindings()[CLOUD_KEY].pending, true);
+  assert.equal(h.api.syncPresentation().text, 'Syncing…');
 });
 test('expired authentication removes token without deleting study data', async () => {
   const h = harness({ fetch: async () => response(401, { error: { code: 'sign_in_required' } }) });
   await assert.rejects(() => h.api.api('/v1/me'), /sign_in_required/);
   assert.equal(h.sessionStorage.getItem(SESSION), null); assert.equal(h.api.state.session, null);
   assert.equal(h.localStorage.getItem('vaProgress.v1'), '{"score":7}');
+  assert.equal(h.api.syncPresentation().text, 'Sign in to resume syncing');
+});
+
+test('authentication and a cached clean flag do not claim a cloud save before remote verification', async () => {
+  let release, started; const requestStarted = new Promise(resolve => { started = resolve; });
+  const h = harness({ fetch: async () => { started(); return new Promise(resolve => { release = resolve; }); } });
+  h.api.state.pending = false;
+  h.api.state.binding.lastHash = await h.api.fingerprint(h.api.capture('cloud-1', true));
+  assert.equal(h.api.syncPresentation().text, 'Checking account save…');
+  const check = h.api.inspectRemote(); await requestStarted;
+  assert.equal(h.api.syncPresentation().text, 'Checking account save…');
+  release(response(200, { revision: 3, data: { 'vaProgress.v1': '{"score":7}' } })); await check;
+  assert.equal(h.api.syncPresentation().text, 'Saved to your account');
+  h.api.state.remote.revision = 4;
+  assert.equal(h.api.syncPresentation().text, 'Newer account save available');
+});
+test('in-flight save stays syncing until server acknowledgement, including translated status', async () => {
+  let release, started; const requestStarted = new Promise(resolve => { started = resolve; });
+  const h = harness({ fetch: async () => { started(); return new Promise(resolve => { release = resolve; }); } });
+  const saving = h.api.save(false); await requestStarted;
+  assert.equal(h.api.syncPresentation().text, 'Syncing…');
+  h.document.documentElement.lang = 'zh-CN';
+  assert.equal(h.api.syncPresentation().text, '正在同步…');
+  release(response(200, { revision: 4 })); await saving;
+  assert.equal(h.api.syncPresentation().text, '已保存到你的账户');
+});
+test('signed-in local profiles retain device wording and failed cloud rechecks revoke confirmed status', async () => {
+  const h = harness();
+  Object.assign(h.api.state, { pending: false, syncChecked: true, remote: { revision: 3, data: {} } });
+  assert.equal(h.api.syncPresentation().text, 'Saved to your account');
+  await assert.rejects(() => h.api.inspectRemote(), /network/);
+  assert.equal(h.api.syncPresentation().text, 'Could not sync — retry');
+  h.VP.boot.activeId = 'local-1';
+  assert.equal(h.api.syncPresentation().text, 'Saved on this device');
+});
+test('an edit during asynchronous cloud comparison cannot be labeled saved', async () => {
+  let change = false, h;
+  h = harness({ fetch: async () => response(200, { revision: 3, data: { 'vaProgress.v1': '{"score":7}' } }),
+    afterDigest: () => { if (change) { change = false; h.localStorage.setItem('vaProgress.v1', '{"score":8}'); } } });
+  h.api.state.binding.lastHash = await h.api.fingerprint(h.api.capture('cloud-1', true));
+  change = true;
+  await h.api.inspectRemote();
+  assert.equal(h.api.state.pending, true);
+  assert.equal(h.api.syncPresentation().text, 'Syncing…');
+});
+test('an edit during a no-op save check remains pending instead of being labeled saved', async () => {
+  let change = false, h;
+  h = harness({ afterDigest: () => { if (change) { change = false; h.localStorage.setItem('vaProgress.v1', '{"score":8}'); } } });
+  h.api.state.binding.lastHash = await h.api.fingerprint(h.api.capture('cloud-1', true));
+  Object.assign(h.api.state, { pending: false, syncChecked: true, remote: { revision: 3, data: {} } });
+  change = true;
+  assert.equal(await h.api.save(false), false);
+  assert.equal(h.api.state.pending, true);
+  assert.equal(h.api.bindings()[CLOUD_KEY].pending, true);
+  assert.equal(h.api.syncPresentation().text, 'Syncing…');
+  assert.equal(h.network.length, 0);
 });
 
 test('loading cloud stages a separate namespace and remaps writing IDs without changing local learner data', async () => {
