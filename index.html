@@ -5431,10 +5431,28 @@ $("subjFilters").addEventListener("click", function(e){
   var b = e.target.closest("[data-subj]"); if (!b) return;
   applySubjectFilter(b.getAttribute("data-subj"));
 });
+/* A banner tap filters AND lands the learner on the filtered list:
+   the banners sit at the top of the Lessons section, well above the
+   ladder, so filtering alone left the learner at the top with the
+   results below the fold. Scroll #lessonHost to the top of the
+   viewport, offset by the sticky toolbar plus the sticky filter bar
+   (both measured live — their heights differ on phone vs desktop),
+   so the first filtered card sits fully visible under the filters.
+   The subject chips need no scroll: they live in that filter bar,
+   already next to the list. */
+function scrollToLessonList(){
+  var host = $("lessonHost"); if (!host || !host.scrollIntoView) return;
+  var tb = document.querySelector(".toolbar");
+  var bar = document.querySelector("#lessons .filters");
+  var offset = (tb ? tb.offsetHeight : 64) + (bar ? bar.offsetHeight : 0) + 10;
+  host.style.scrollMarginTop = offset + "px";
+  host.scrollIntoView({ block: "start", behavior: reducedMotion ? "auto" : "smooth" });
+}
 document.querySelectorAll("[data-subj-banner]").forEach(function(bn){
-  bn.addEventListener("click", function(){ applySubjectFilter(bn.getAttribute("data-subj-banner")); });
+  function pick(){ applySubjectFilter(bn.getAttribute("data-subj-banner")); scrollToLessonList(); }
+  bn.addEventListener("click", pick);
   bn.addEventListener("keydown", function(e){
-    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar"){ e.preventDefault(); applySubjectFilter(bn.getAttribute("data-subj-banner")); }
+    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar"){ e.preventDefault(); pick(); }
   });
 });
 function refreshFilterScopes(){
