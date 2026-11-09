@@ -1433,11 +1433,11 @@
           esc(F("Correct answers: {correct} / {total}", "答对题数：{correct} / {total}", { correct: latest.correctCount, total: recordTotal(latest) })) + " · " + latest.rawPercent + "% (" + esc(fmtDate(latest.finishedAt)) + ")</p>";
         html += "<p>" + esc(T("Percentage trend", "正确率趋势")) + ": " + list.map(function (h) { return h.rawPercent + "%"; }).join(" → ") + "</p>";
         if (Object.keys(versions).length > 1) html += '<p class="pf-err">' + esc(T("Profile scope or version changed; results may not be directly comparable.", "考试范围或版本已变更，成绩可能无法直接比较。")) + "</p>";
-        html += '<table class="exam-table"><thead><tr><th>' + esc(T("Completion date", "完成日期")) + "</th><th>" + esc(T("Completion status", "完成状态")) + "</th><th>" + esc(T("Correct / total", "答对题数／总题数")) + "</th><th>" + esc(T("Percentage", "正确率")) + "</th><th>" + esc(T("Linear practice estimate", "线性换算练习估分")) + "</th></tr></thead><tbody>";
+        html += '<div class="exam-table-scroll" role="region" tabindex="0" aria-label="' + esc(T("Exam result history — scroll horizontally to see all columns", "考试成绩记录——左右滚动查看所有列")) + '"><table class="exam-table"><thead><tr><th>' + esc(T("Completion date", "完成日期")) + "</th><th>" + esc(T("Completion status", "完成状态")) + "</th><th>" + esc(T("Correct / total", "答对题数／总题数")) + "</th><th>" + esc(T("Percentage", "正确率")) + "</th><th>" + esc(T("Linear practice estimate", "线性换算练习估分")) + "</th></tr></thead><tbody>";
         list.slice().reverse().slice(0, 5).forEach(function (h) {
           html += "<tr><td>" + esc(fmtDate(h.finishedAt)) + (h.timingAnomaly ? " ⚠" : "") + "</td><td>" + esc(h.status === "submitted" ? T("Submitted", "已提交") : T("Time expired", "时间已到")) + "</td><td>" + h.correctCount + " / " + recordTotal(h) + "</td><td>" + h.rawPercent + "%</td><td>" + esc(F("{score}/600", "{score}/600", { score: h.scaledEstimate })) + "</td></tr>";
         });
-        html += "</tbody></table>";
+        html += "</tbody></table></div>";
       });
     }
     html += "<p>" + esc(T("Linear practice estimate only—not an official SOL score. This practice does not predict SOL proficiency or passing status.", "仅为线性换算的练习估分，并非官方 SOL 成绩，不能用于预测 SOL 达标或通过情况。")) + "</p>";

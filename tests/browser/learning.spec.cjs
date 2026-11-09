@@ -66,7 +66,7 @@ test('flashcard art is absent before reveal and rating advances the deck', async
   await expect(card.locator('img')).toHaveCount(0);
 });
 
-test('exam reload preserves shuffled order, answer, flag and deadline; result art loads', async ({ page }) => {
+test('exam reload preserves shuffled order, answer, flag and deadline; result art loads', async ({ page }, info) => {
   await route(page, 'sol-practice');
   await page.locator('#view-sol-practice [data-psubj="math"]').click();
   await page.locator('#view-sol-practice [data-pgrade="6"]').click();
@@ -103,6 +103,27 @@ test('exam reload preserves shuffled order, answer, flag and deadline; result ar
   await expect.poll(() => result.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
   await expect(page.locator('#exBack')).toBeVisible();
   await noOverflow(page);
+  await route(page, 'parent-briefing');
+  for (const code of ['en', 'zh']) {
+    await language(page, code);
+    const history = page.locator('#examReportHost .exam-table-scroll');
+    await expect(history).toHaveAttribute('role', 'region');
+    await expect(history).toHaveAttribute('tabindex', '0');
+    await expect(history.locator('table')).toBeVisible();
+    await expect(history.locator('tbody tr')).toHaveCount(1);
+    await noOverflow(page);
+  }
+  if (info.project.name === 'mobile') {
+    await page.setViewportSize({ width: 320, height: 720 });
+    await language(page, 'en');
+    const history = page.locator('#examReportHost .exam-table-scroll');
+    await expect(history.locator('table')).toBeVisible();
+    await noOverflow(page);
+    expect(await history.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(true);
+    await history.focus();
+    await history.press('ArrowRight');
+    await expect.poll(() => history.evaluate(el => el.scrollLeft)).toBeGreaterThan(0);
+  }
 });
 
 test('Ratio lab keyboard controls and touch targets work in both languages', async ({ page }) => {

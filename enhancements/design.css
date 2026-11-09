@@ -273,3 +273,12 @@
   body .app-shell section[id] { scroll-margin-top: calc(var(--va-toolbar-height, 72px) + 20px); }
   body .app-shell .filters { top: calc(var(--va-toolbar-height, 72px) + 8px); }
 }
+
+/* Populated exam history can be wider than a phone; keep scrolling in the table. */
+.exam-table-scroll { width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; overscroll-behavior-x: contain; }
+.exam-table-scroll:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+@media print {
+  .exam-table-scroll { overflow: visible; max-width: none; }
+  .exam-table-scroll .exam-table { width: 100%; table-layout: fixed; }
+  .exam-table-scroll th, .exam-table-scroll td { overflow-wrap: anywhere; }
+}
