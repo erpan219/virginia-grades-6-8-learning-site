@@ -68,8 +68,8 @@ test('flashcard art is absent before reveal and rating advances the deck', async
 
 test('exam reload preserves shuffled order, answer, flag and deadline; result art loads', async ({ page }) => {
   await route(page, 'sol-practice');
-  await page.locator('[data-psubj="math"]').click();
-  await page.locator('[data-pgrade="6"]').click();
+  await page.locator('#view-sol-practice [data-psubj="math"]').click();
+  await page.locator('#view-sol-practice [data-pgrade="6"]').click();
   const intro = page.locator('.sol-illu img');
   await intro.scrollIntoViewIfNeeded();
   await expect.poll(() => intro.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
