@@ -1,0 +1,875 @@
+[
+  {
+    "clipped": 0,
+    "headings": [
+      "单词卡 — 每个关键词，两种语言"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/flashcards",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Guided practice — worked example, then your turn · 引导练习——先看例题，再自己试",
+      "SOL 风格测验 — 7 道题，15 分钟"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/guided-practice",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "10 道题。你能爬多高？"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/quizzes",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "SOL 模拟考试"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/sol-practice",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "五分钟混合回顾",
+      "到期复习",
+      "复习我的错题"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/daily-review",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "制定你的学习计划"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/session-builder",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "在玩中理解知识",
+      "十个动手实验——一次玩懂一个知识点"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/labs",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "单元词汇表——双语词汇与解释"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/glossary",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "美国历史时间线 — 从詹姆斯敦到今天"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/timeline",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Skill map — how the courses connect · 技能地图——课程如何衔接"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/mastery-map",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "已覆盖什么——还没覆盖什么"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/scope",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "一级一级台阶，学懂核心课题。弗吉尼亚 6–8 年级 · 核心课题，轻松学",
+      "Your first win takes about five minutes · 第一次成功大约需要五分钟",
+      "选年级——三步直达练习"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/home",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "家长简报",
+      "学习进度报告",
+      "家长进度报告 —— 一页纸"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/parent-briefing",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Print as a workbook · 打印成练习册"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/print-studio",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "写作工作室"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/writing-studio",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "资料侦探"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/source-detective",
+    "width": 1440
+  },
+  {
+    "headings": [
+      "阅读与练习"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/bilingual-bridge",
+    "width": 1440
+  },
+  {
+    "headings": [
+      "课程阶梯 — 6、7、8 年级"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/lessons",
+    "width": 1440
+  },
+  {
+    "headings": [
+      "更多——网站的其他全部内容",
+      "讲得清楚的好视频",
+      "管理学习者"
+    ],
+    "height": 900,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/more",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "单词卡 — 每个关键词，两种语言"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/flashcards",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Guided practice — worked example, then your turn · 引导练习——先看例题，再自己试",
+      "SOL 风格测验 — 7 道题，15 分钟"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/guided-practice",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "10 道题。你能爬多高？"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/quizzes",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "SOL 模拟考试"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/sol-practice",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "五分钟混合回顾",
+      "到期复习",
+      "复习我的错题"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/daily-review",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "制定你的学习计划"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/session-builder",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "在玩中理解知识",
+      "十个动手实验——一次玩懂一个知识点"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/labs",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "单元词汇表——双语词汇与解释"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/glossary",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "美国历史时间线 — 从詹姆斯敦到今天"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/timeline",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Skill map — how the courses connect · 技能地图——课程如何衔接"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/mastery-map",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "已覆盖什么——还没覆盖什么"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/scope",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "一级一级台阶，学懂核心课题。弗吉尼亚 6–8 年级 · 核心课题，轻松学",
+      "Your first win takes about five minutes · 第一次成功大约需要五分钟",
+      "选年级——三步直达练习"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/home",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "家长简报",
+      "学习进度报告",
+      "家长进度报告 —— 一页纸"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/parent-briefing",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Print as a workbook · 打印成练习册"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/print-studio",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "写作工作室"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/writing-studio",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "资料侦探"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/source-detective",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "阅读与练习"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/bilingual-bridge",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "课程阶梯 — 6、7、8 年级"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/lessons",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "更多——网站的其他全部内容",
+      "讲得清楚的好视频",
+      "管理学习者"
+    ],
+    "height": 844,
+    "language": "zh-CN",
+    "overflow": false,
+    "route": "#/more",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Flashcards — every key word, two languages"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/flashcards",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Guided practice — worked example, then your turn · 引导练习——先看例题，再自己试",
+      "SOL-style quiz — 7 questions, 15 minutes"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/guided-practice",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "10 questions. How high can you climb?"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/quizzes",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "SOL practice exam"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/sol-practice",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Five-Minute Mixed Retrieval",
+      "Review due",
+      "Review my mistakes"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/daily-review",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Build your session"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/session-builder",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Learn by playing with the ideas",
+      "Ten hands-on labs — one idea at a time"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/labs",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Unit glossaries — words with explanations, in both languages"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/glossary",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "U.S. History timeline — Jamestown to today"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/timeline",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Skill map — how the courses connect · 技能地图——课程如何衔接"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/mastery-map",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "What is covered — and what is not yet"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/scope",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Climb the middle-school ladder, one rung at a time.弗吉尼亚 6–8 年级 · 核心课题，轻松学",
+      "Your first win takes about five minutes · 第一次成功大约需要五分钟",
+      "Pick your grade — reach practice in three taps"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/home",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Parent Briefing",
+      "Progress report",
+      "Parent progress report — one page"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/parent-briefing",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Print as a workbook · 打印成练习册"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/print-studio",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Writing Studio"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/writing-studio",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Source Detective"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/source-detective",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Reading & practice"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/bilingual-bridge",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "The lesson ladder — Grades 6, 7 & 8"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/lessons",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "More — everything else on the site",
+      "Videos that explain it well",
+      "Manage learners"
+    ],
+    "height": 844,
+    "language": "en",
+    "overflow": false,
+    "route": "#/more",
+    "width": 390
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Flashcards — every key word, two languages"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/flashcards",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Guided practice — worked example, then your turn · 引导练习——先看例题，再自己试",
+      "SOL-style quiz — 7 questions, 15 minutes"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/guided-practice",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "10 questions. How high can you climb?"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/quizzes",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "SOL practice exam"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/sol-practice",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Five-Minute Mixed Retrieval",
+      "Review due",
+      "Review my mistakes"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/daily-review",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Build your session"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/session-builder",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Learn by playing with the ideas",
+      "Ten hands-on labs — one idea at a time"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/labs",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Unit glossaries — words with explanations, in both languages"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/glossary",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "U.S. History timeline — Jamestown to today"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/timeline",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Skill map — how the courses connect · 技能地图——课程如何衔接"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/mastery-map",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "What is covered — and what is not yet"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/scope",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Climb the middle-school ladder, one rung at a time.弗吉尼亚 6–8 年级 · 核心课题，轻松学",
+      "Your first win takes about five minutes · 第一次成功大约需要五分钟",
+      "Pick your grade — reach practice in three taps"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/home",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Parent Briefing",
+      "Progress report",
+      "Parent progress report — one page"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/parent-briefing",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Print as a workbook · 打印成练习册"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/print-studio",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Writing Studio"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/writing-studio",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Source Detective"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/source-detective",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "Reading & practice"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/bilingual-bridge",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "The lesson ladder — Grades 6, 7 & 8"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/lessons",
+    "width": 1440
+  },
+  {
+    "clipped": 0,
+    "headings": [
+      "More — everything else on the site",
+      "Videos that explain it well",
+      "Manage learners"
+    ],
+    "height": 900,
+    "language": "en",
+    "overflow": false,
+    "route": "#/more",
+    "width": 1440
+  }
+]

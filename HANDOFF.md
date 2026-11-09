@@ -4,18 +4,18 @@
 
 ## What this is
 
-A bilingual (English / Simplified Chinese) learning site for Virginia grades 6–8, aligned to the Virginia Standards of Learning (SOL). Public link, no accounts (accounts are planned, not built — see below).
+A bilingual (English / Simplified Chinese) learning site for Virginia grades 6–8, aligned to the Virginia Standards of Learning (SOL). Public link with local learner profiles. Optional parent-managed cloud accounts are implemented locally and await owner approval for deployment.
 
 - **Live site:** https://erpan219.github.io/virginia-grades-6-8-learning-site/
 - **Repo:** https://github.com/erpan219/virginia-grades-6-8-learning-site
-- **Master copy:** a Muse web artifact (slug `virginia-grades-6-8-learning-site`). This repo is the published, collaboratively editable copy. For major builds, the artifact is master — re-export and replace `index.html` (see "Publishing" below).
+- **Authoritative source:** this GitHub repository, by explicit owner instruction on November 9, 2026. Muse is historical origin only. Do not replace current GitHub work with a Muse export.
 
 ## Architecture — read before editing
 
-- **One file.** The whole site is `index.html` (~9 MB, ~21,300 lines). All 203 assets (images, JS) are inlined as base64/data. There is **no build step, no backend, no bundler**.
+- **Standalone frontend.** `index.html` remains the published artifact (~9.4 MB), including embedded assets and the original lesson engine. Maintained additions live in `content/` and `enhancements/`; run `node content/build.mjs` and `python3 scripts/assemble.py` after editing those sources. The assembler is idempotent. The optional API is isolated in `account-service/`.
 - **Hash routing, 19 routes**, persistent mounted views, opens on `#/home`. Mobile bottom tab bar: Home · Lessons · Practice · Cards · More. Desktop grouped rail.
-- **No backend. Progress lives in the browser (localStorage) only.** There is no server, no database, no sync.
-- **Content:** 73 lessons (G6: 21, G7: 21, G8: 31 incl. 9 Algebra I), 13 courses, 511 multiple-choice questions + 25 TEIs, 521 flashcards (497 vocab + 24 cloze), 22 Play Labs, 7 Three.js 3D lessons, FSRS flashcard scheduling, mistake-review queue, Today's Path, SOL practice exams, mastery map, bilingual glossary (228 terms), printable worksheets + parent report.
+- **Local progress remains available.** The optional account service uses Cloudflare Workers Free + D1 Free. It is inactive unless `VA_ACCOUNT_CONFIG.apiBase` is configured. Account-linked sessions use tab-scoped credentials and dedicated local learner namespaces; a profile switch requires reload because the boot shim captures its namespace. Never place credentials in `va*` keys or exports.
+- **Content:** 73 lessons (G6: 21, G7: 21, G8: 31 incl. 9 Algebra I), 13 courses, 559 multiple-choice questions + 25 TEIs, 545 flashcards (521 vocab + 24 cloze) in the unpublished revision, 22 Play Labs, 7 Three.js 3D lessons, FSRS flashcard scheduling, mistake-review queue, Today's Path, SOL practice exams, mastery map, bilingual glossary (228 terms), printable worksheets + parent report.
 - **Languages:** EN / Simplified Chinese / bilingual. Per-sentence **翻译** buttons are the translation mechanism; there are no always-visible paired Chinese paragraphs. Chinese audio was removed site-wide (English TTS only). Easy-read font is the default.
 - **Mobile tab bar labels are Chinese-only at ≤900px by design.** Desktop rail follows the selected language. Do not "fix" this without the owner saying so.
 
@@ -68,13 +68,13 @@ of truth. The `va` CLI (`tools/va`) and the bug-fix template
 
 ## Publishing (how changes go live)
 
-- Edit `index.html` (web editor or clone), commit to `main` — GitHub Pages republishes automatically in about a minute.
-- **The API push rejects the 9 MB file (HTTP 413).** To replace `index.html` after a major build, upload it via the GitHub web UI (Add file → Upload files). Small files (this handoff, READMEs) can go through the API.
-- The Muse artifact remains master for major builds: export the artifact as one self-contained HTML and upload it as `index.html`.
+- **Owner approval is required before publishing.** Work on a `codex/` branch, present the tested revision, and wait for approval before merging/pushing a publishing branch or deploying the account backend. Verify the repository’s current Pages source/workflow; do not assume a push is harmless.
+- The contents API previously rejected the large HTML with HTTP 413. Use the checked-out repository and normal Git transport for a reviewed change; do not overwrite newer work. Confirm the published front door and deployment status after approval.
+- GitHub is the main source. No Muse re-export is required. Free tier only: no paid upgrades or automatic resource provisioning. See `account-service/README.md` for plan verification and staged deployment steps.
 
-## Current status (2026-11-07)
+## Current status (2026-11-09, unpublished changes)
 
 - Cleanup + graphics run complete and live: 4 subject banners, 12 vocabulary illustrations, 35 diagram companions (+ Daily Review fix), 3 empty-state images, 2 celebrations, 2 SOL images.
-- **User accounts: planned, NOT built.** Plan: parent-created usernames with strong generated sign-in codes (no email), separate parent admin login with recovery codes, no short PINs; separate Cloudflare Worker + database project. Building awaits the owner's decisions (4 learners + parent admin vs 4 total; codes vs PINs; new Cloudflare project; strictly free vs small paid tier).
+- **Accounts implemented and tested locally; not deployed.** Owner selected parent-managed usernames and strong generated codes, free tier only, and GitHub as source. Current service supports one owner-managed household (up to 12 learners), recovery, revocation, isolated progress, and explicit concurrent-save conflicts. Production account selection/free-plan verification and owner publication approval remain required. No payment method or subscription is part of this work.
 - **Improvement backlog (Astra, ranked 2026-11-07):** 14 ideas. Build-first pick: (1) Find the Missing Step — prerequisite repair route, (2) Debug This Answer — misconception lab, (3) Protect My Progress — backup/restore. Six backlog items were dropped as not worth building (lab missions, quests, portfolio, study partners, downloadable packs, tutor prompts). Ask the owner which batch to build; never assume the top-N is the job.
 - Test results from external testers arrive as a QA zip or Drive link; the inbox for them is `machimachi@agentmail.to` (do not use it unprompted for anything else).

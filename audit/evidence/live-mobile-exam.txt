@@ -1,0 +1,265 @@
+- link "跳到课程":
+  - /url: "#lessons"
+- banner:
+  - link "弗吉尼亚 6–8 年级学习站首页":
+    - /url: "#top"
+    - generic: 弗吉尼亚学习阶梯
+  - generic: 0 / 73 节课已完成
+  - status: 保存在这台设备上
+  - button "Menu · 菜单":
+    - text: Menu · 菜单
+- text: ∑ Aa ⚛ § ∑ Aa ⚛ § ∑ ∑ ∑ ∑ ∑ ∑ Aa Aa Aa Aa Aa ⚛ ⚛ ⚛ ⚛ ⚛ § § § § § ∑ ∑ ∑ ∑ ∑ ∑ Aa Aa Aa Aa Aa ⚛ ⚛ ⚛ ⚛ ⚛ § § § § § ∑ ∑ ∑ ∑ ∑ ∑ Aa Aa Aa Aa Aa ⚛ ⚛ ⚛ ⚛ ⚛ ⚛ § § § § § ∑ ∑ ∑ ∑ ∑ ∑ ∑ ∑ ∑
+- region "SOL 模拟考试":
+  - paragraph: Test-Day Practice · 考试日练习
+  - heading "SOL 模拟考试" [level=2]
+  - paragraph: 六年级数学 · SOL 练习
+  - heading "考试结果" [level=3]
+  - paragraph: 已保存在此设备上
+  - paragraph: 六年级数学 · SOL 练习
+  - paragraph: "完成状态: 已提交 · 完成日期: 2026年11月9日 11:36"
+  - paragraph: "已用时间: 0 分 44 秒"
+  - paragraph: 计时依赖此设备的时钟，不具备防篡改或监考功能。
+  - paragraph: 答对题数：1 / 42
+  - paragraph: "正确率: 2%"
+  - paragraph: "线性换算练习估分: 14/600"
+  - paragraph: 仅为线性换算的练习估分，并非官方 SOL 成绩，不能用于预测 SOL 达标或通过情况。
+  - paragraph: 已标记 1 道题
+  - figure:
+    - img "动漫风格插画：日出照亮一条安静的校园小路，路边有一张木长椅、一棵小树和一栋教学楼。"
+  - heading "逐题回顾" [level=4]
+  - paragraph: 1. 六年级数学 — 正确 ⚑
+  - paragraph: 一个班有 5 名男生和 3 名女生。女生与男生的比率是？
+  - paragraph: "你的答案: 3 : 5"
+  - paragraph: "正确答案: 3 : 5"
+  - paragraph: "解析: 题目先说女生：3 名女生比 5 名男生 = 3 : 5。"
+  - paragraph: 2. 六年级数学 — 未作答
+  - paragraph: 求值：18 ÷ 3 + 2 × 4
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 14"
+  - paragraph: "解析: 先从左到右算乘除：18 ÷ 3 = 6，2 × 4 = 8，再 6 + 8 = 14。"
+  - paragraph: 3. 六年级数学 — 未作答
+  - paragraph: "哪个比率与 4 : 6 相等？"
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 2 : 3"
+  - paragraph: "解析: 两个部分都除以 2：4÷2 = 2，6÷2 = 3。"
+  - paragraph: 4. 六年级数学 — 未作答
+  - paragraph: 解方程：x + 6 = 15
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: x = 9"
+  - paragraph: "解析: 两边同时减 6：15 − 6 = 9。"
+  - paragraph: 5. 六年级数学 — 未作答
+  - paragraph: 一个 2 厘米 × 3 厘米 × 4 厘米的盒子体积是？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 24 立方厘米"
+  - paragraph: "解析: 体积 = 长 × 宽 × 高 = 2 × 3 × 4 = 24 立方厘米。"
+  - paragraph: 6. 六年级数学 — 未作答
+  - paragraph: 解方程：x ÷ 4 = 5
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: x = 20"
+  - paragraph: "解析: 两边同时乘以 4：5 × 4 = 20。检验：20 ÷ 4 = 5 ✓"
+  - paragraph: 7. 六年级数学 — 未作答
+  - paragraph: 萨姆解 x + 5 = 12 时只在左边减了 5，靠运气也得到 x = 7。为什么他的方法仍然不对？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 方程必须保持平衡：两边必须做同样的运算"
+  - paragraph: "解析: 他这次蒙对了 7，但只动一边的操作会打破平衡，遇到更难的方程就行不通。"
+  - paragraph: 8. 六年级数学 — 未作答
+  - paragraph: 一个边长 5 米的正方形花园，面积是……
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 25 平方米"
+  - paragraph: "解析: 面积 = 边 × 边 = 5 × 5 = 25 平方米。（20 是周长。）"
+  - paragraph: 9. 六年级数学 — 未作答
+  - paragraph: 求值：10 − 2 × 3
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 4"
+  - paragraph: "解析: 先乘：2 × 3 = 6，再 10 − 6 = 4。"
+  - paragraph: 10. 六年级数学 — 未作答
+  - paragraph: 3² + 1 等于多少？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 10"
+  - paragraph: "解析: 3² = 3 × 3 = 9，再 9 + 1 = 10。"
+  - paragraph: 11. 六年级数学 — 未作答
+  - paragraph: 一个 40 美元的游戏打九折（便宜 10%）。你省了多少钱？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 4 美元"
+  - paragraph: "解析: 40 美元的 10% = 0.10 × 40 = 省 4 美元。"
+  - paragraph: 12. 六年级数学 — 未作答
+  - paragraph: 求值：5 + 3 × 4
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 17"
+  - paragraph: "解析: 先乘：3 × 4 = 12，再 5 + 12 = 17。"
+  - paragraph: 13. 六年级数学 — 未作答
+  - paragraph: 哪个值是 x ≤ 5 的解？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 5"
+  - paragraph: "解析: ≤ 表示“小于或等于”，所以 5 本身算数。"
+  - paragraph: 14. 六年级数学 — 未作答
+  - paragraph: 杰伊先算了加法，算出 4 + 2 × 3 = 18。正确的值是……
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 10"
+  - paragraph: "解析: 先乘：2 × 3 = 6，再 4 + 6 = 10。"
+  - paragraph: 15. 六年级数学 — 未作答
+  - paragraph: 4 本笔记本 6 美元，每本的单价是？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 每本 $1.50"
+  - paragraph: "解析: 单价 = $6 ÷ 4 = 每本 $1.50。"
+  - paragraph: 16. 六年级数学 — 未作答
+  - paragraph: 哪个分数等于 60%？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 3/5"
+  - paragraph: "解析: 60% = 60/100，化简为 3/5。"
+  - paragraph: 17. 六年级数学 — 未作答
+  - paragraph: 把 0.08 写成百分比。
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 8%"
+  - paragraph: "解析: 小数点向右移两位：0.08 → 8%。"
+  - paragraph: 18. 六年级数学 — 未作答
+  - paragraph: "|7| 等于多少？"
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 7"
+  - paragraph: "解析: 7 离 0 有 7 个单位，所以 |7| = 7。"
+  - paragraph: 19. 六年级数学 — 未作答
+  - paragraph: 哪个整数更大？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: −2"
+  - paragraph: "解析: 在数轴上，−2 在 −7 的右边，所以 −2 更大。"
+  - paragraph: 20. 六年级数学 — 未作答
+  - paragraph: 哪个更划算：6 支铅笔 3 美元，还是 10 支铅笔 4 美元？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 10 支 4 美元（每支 40 美分）"
+  - paragraph: "解析: $3 ÷ 6 = 每支 $0.50；$4 ÷ 10 = 每支 $0.40。单价低的更划算。"
+  - paragraph: 21. 六年级数学 — 未作答
+  - paragraph: "|−9| 等于多少？"
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 9"
+  - paragraph: "解析: 绝对值是到 0 的距离，所以 |−9| = 9。"
+  - paragraph: 22. 六年级数学 — 未作答
+  - paragraph: −4 的相反数是……
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 4"
+  - paragraph: "解析: 相反数离 0 距离相同、方向相反：−4 和 4。"
+  - paragraph: 23. 六年级数学 — 未作答
+  - paragraph: 解方程：3x = 21
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: x = 7"
+  - paragraph: "解析: 两边同时除以 3：21 ÷ 3 = 7。"
+  - paragraph: 24. 六年级数学 — 未作答
+  - paragraph: 单位比率的分母永远是……
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 1"
+  - paragraph: "解析: 单位比率就是“每 1 个”——比如 1 张票 3 美元。"
+  - paragraph: 25. 六年级数学 — 未作答
+  - paragraph: “3 小于 5”应该用哪个符号？3 __ 5
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: <"
+  - paragraph: "解析: < 的尖端指向较小的数，开口朝向较大的数。"
+  - paragraph: 26. 六年级数学 — 未作答
+  - paragraph: 1/5 化成百分比是？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 20%"
+  - paragraph: "解析: 1 ÷ 5 = 0.2，0.2 = 20%。"
+  - paragraph: 27. 六年级数学 — 未作答
+  - paragraph: 米娅写 0.35 = 3.5%。错在哪里？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 小数点只移了一位；0.35 = 35%"
+  - paragraph: "解析: 变百分比要移两位：0.35 → 35%。"
+  - paragraph: 28. 六年级数学 — 未作答
+  - paragraph: 哪个整数更小？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: −6"
+  - paragraph: "解析: −6 在数轴上最靠左，所以最小。"
+  - paragraph: 29. 六年级数学 — 未作答
+  - paragraph: 3/4 化成百分比是？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 75%"
+  - paragraph: "解析: 3 ÷ 4 = 0.75，0.75 = 75%。"
+  - paragraph: 30. 六年级数学 — 未作答
+  - paragraph: 一份食谱用 3 杯面粉配 2 杯糖。用 8 杯糖时需要多少面粉？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 12 杯"
+  - paragraph: "解析: 糖从 2 变成 8——乘了 4。面粉同样缩放：3 × 4 = 12 杯。"
+  - paragraph: 31. 六年级数学 — 未作答
+  - paragraph: 点 (−3, 2) 在哪里？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 先左走 3，再上走 2"
+  - paragraph: "解析: x = −3 表示向左 3；y = 2 表示向上 2。"
+  - paragraph: 32. 六年级数学 — 未作答
+  - paragraph: 底为 10、高为 6 的三角形面积是？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 30"
+  - paragraph: "解析: 三角形面积 = ½ × 底 × 高 = ½ × 10 × 6 = 30。"
+  - paragraph: 33. 六年级数学 — 未作答
+  - paragraph: 一名潜水员在 −12 英尺处，上升了 5 英尺。现在在多少英尺？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: −7 英尺"
+  - paragraph: "解析: 从 −12 出发向 0 移动 5：−12 + 5 = −7 英尺。"
+  - paragraph: 34. 六年级数学 — 未作答
+  - paragraph: 哪个更大：|−3| 还是 −5？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: |−3|"
+  - paragraph: "解析: |−3| = 3，3 大于 −5。"
+  - paragraph: 35. 六年级数学 — 未作答
+  - paragraph: 求值：(2 + 3) × 4
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 20"
+  - paragraph: "解析: 先算括号：2 + 3 = 5，再 5 × 4 = 20。"
+  - paragraph: 36. 六年级数学 — 未作答
+  - paragraph: 莉娜想画 (1, 4)，却画成了 (4, 1)。她错在哪里？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 她把 x 和 y 换位了——横走的数必须在前"
+  - paragraph: "解析: (x, y) 的顺序是固定的：先横 (x)，再上下 (y)。换位会落到另一个点。"
+  - paragraph: 37. 六年级数学 — 未作答
+  - paragraph: 长 9 厘米、宽 5 厘米的长方形面积是？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 45 平方厘米"
+  - paragraph: "解析: 面积 = 长 × 宽 = 9 × 5 = 45 平方厘米。"
+  - paragraph: 38. 六年级数学 — 未作答
+  - paragraph: 解方程：x − 7 = 3
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: x = 10"
+  - paragraph: "解析: 两边同时加 7：3 + 7 = 10。"
+  - paragraph: 39. 六年级数学 — 未作答
+  - paragraph: 哪个最大？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 0.6"
+  - paragraph: "解析: 55% = 0.55，1/2 = 0.5，所以 0.6 最大。"
+  - paragraph: 40. 六年级数学 — 未作答
+  - paragraph: 2⁴ 是什么意思？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 2 × 2 × 2 × 2"
+  - paragraph: "解析: 指数 4 表示：2 自乘 4 次 = 16。"
+  - paragraph: 41. 六年级数学 — 未作答
+  - paragraph: "10 : 15 化简后是？"
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 2 : 3"
+  - paragraph: "解析: 两部分都除以 5：10÷5=2，15÷5=3。"
+  - paragraph: 42. 六年级数学 — 未作答
+  - paragraph: 点 (2, 5) 在哪里？
+  - paragraph: "你的答案: 未作答"
+  - paragraph: "正确答案: 先横走 2，再上走 5"
+  - paragraph: "解析: (x, y) 中 x 在前：先横走 2，再上走 5（y 是正数所以向上——y 若为负数则向下）。"
+  - button "下载成绩"
+  - button "返回模拟考试"
+  - alert: 考试结果
+- text: ∑ ∑ ∑ ∑ ⚛ ⚛ ⚛ § § Aa
+- contentinfo:
+  - paragraph:
+    - strong: 弗吉尼亚 6–8 年级学习站
+  - paragraph: 对每一位学生、家长和老师免费——把链接分享给任何人。无账号、无广告、无需注册。只专注于弗吉尼亚 6–8 年级。
+- navigation "主导航":
+  - link "首页":
+    - /url: "#/home"
+    - generic: 首页
+  - link "课程":
+    - /url: "#/lessons"
+    - generic: 课程
+  - link "练习":
+    - /url: "#/quizzes"
+    - generic: 练习
+  - link "单词卡":
+    - /url: "#/flashcards"
+    - generic: 单词卡
+  - link "更多":
+    - /url: "#/more"
+    - generic: 更多
+- text: Worked reasoning · 推理过程 Worked reasoning · 推理过程
+- dialog

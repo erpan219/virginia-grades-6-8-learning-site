@@ -1,0 +1,852 @@
+[
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/flashcards",
+    "headings": [
+      "Flashcards — every key word, two languages"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/guided-practice",
+    "headings": [
+      "Guided practice — worked example, then your turn · 引导练习——先看例题，再自己试",
+      "SOL-style quiz — 7 questions, 15 minutes"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/quizzes",
+    "headings": [
+      "10 questions. How high can you climb?"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/sol-practice",
+    "headings": [
+      "SOL practice exam"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/daily-review",
+    "headings": [
+      "Five-Minute Mixed Retrieval",
+      "Review due",
+      "Review my mistakes"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/session-builder",
+    "headings": [
+      "Build your session"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/labs",
+    "headings": [
+      "Learn by playing with the ideas",
+      "Ten hands-on labs — one idea at a time"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/glossary",
+    "headings": [
+      "Unit glossaries — words with explanations, in both languages"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/timeline",
+    "headings": [
+      "U.S. History timeline — Jamestown to today"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/mastery-map",
+    "headings": [
+      "Skill map — how the courses connect · 技能地图——课程如何衔接",
+      "Knowledge-point mastery map"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/scope",
+    "headings": [
+      "What is covered — and what is not yet"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/home",
+    "headings": [
+      "Climb the middle-school ladder, one rung at a time.弗吉尼亚 6–8 年级 · 核心课题，轻松学",
+      "Your first win takes about five minutes · 第一次成功大约需要五分钟",
+      "Pick your grade — reach practice in three taps",
+      "What is this?",
+      "Grade 6 — pick one subject for today"
+    ],
+    "mainText": 5706,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/parent-briefing",
+    "headings": [
+      "Parent Briefing",
+      "Progress report",
+      "Parent progress report — one page"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/print-studio",
+    "headings": [
+      "Print as a workbook · 打印成练习册"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/writing-studio",
+    "headings": [
+      "Writing Studio"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/source-detective",
+    "headings": [
+      "Source Detective"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/bilingual-bridge",
+    "headings": [],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/lessons",
+    "headings": [
+      "The lesson ladder — Grades 6, 7 & 8"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "en",
+    "route": "#/more",
+    "headings": [
+      "More — everything else on the site",
+      "Videos that explain it well",
+      "Manage learners",
+      "Data & backup",
+      "Practice & reference links"
+    ],
+    "mainText": 6445,
+    "scroll": 1440,
+    "title": "Virginia Grades 6–8 Learning Site — 弗吉尼亚 6–8 年级学习站",
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/flashcards",
+    "headings": [
+      "单词卡 — 每个关键词，两种语言"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/guided-practice",
+    "headings": [
+      "Guided practice — worked example, then your turn · 引导练习——先看例题，再自己试",
+      "SOL 风格测验 — 7 道题，15 分钟"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/quizzes",
+    "headings": [
+      "10 道题。你能爬多高？"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/sol-practice",
+    "headings": [
+      "SOL 模拟考试"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/daily-review",
+    "headings": [
+      "五分钟混合回顾",
+      "到期复习",
+      "复习我的错题"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/session-builder",
+    "headings": [
+      "制定你的学习计划"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/labs",
+    "headings": [
+      "在玩中理解知识",
+      "十个动手实验——一次玩懂一个知识点"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/glossary",
+    "headings": [
+      "单元词汇表——双语词汇与解释"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/timeline",
+    "headings": [
+      "美国历史时间线 — 从詹姆斯敦到今天"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/mastery-map",
+    "headings": [
+      "Skill map — how the courses connect · 技能地图——课程如何衔接",
+      "Knowledge-point mastery map"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/scope",
+    "headings": [
+      "已覆盖什么——还没覆盖什么"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/home",
+    "headings": [
+      "一级一级台阶，学懂核心课题。弗吉尼亚 6–8 年级 · 核心课题，轻松学",
+      "Your first win takes about five minutes · 第一次成功大约需要五分钟",
+      "选年级——三步直达练习",
+      "这是什么？",
+      "六年级——为今天选一个学科"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/parent-briefing",
+    "headings": [
+      "家长简报",
+      "学习进度报告",
+      "家长进度报告 —— 一页纸"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/print-studio",
+    "headings": [
+      "Print as a workbook · 打印成练习册"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/writing-studio",
+    "headings": [
+      "写作工作室"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/source-detective",
+    "headings": [
+      "资料侦探"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/bilingual-bridge",
+    "headings": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/lessons",
+    "headings": [
+      "课程阶梯 — 6、7、8 年级"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "desktop",
+    "language": "zh",
+    "route": "#/more",
+    "headings": [
+      "更多——网站的其他全部内容",
+      "讲得清楚的好视频",
+      "管理学习者",
+      "数据与备份",
+      "练习与参考链接"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/flashcards",
+    "headings": [
+      "单词卡 — 每个关键词，两种语言"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/guided-practice",
+    "headings": [
+      "Guided practice — worked example, then your turn · 引导练习——先看例题，再自己试",
+      "SOL 风格测验 — 7 道题，15 分钟"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/quizzes",
+    "headings": [
+      "10 道题。你能爬多高？"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/sol-practice",
+    "headings": [
+      "SOL 模拟考试"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/daily-review",
+    "headings": [
+      "五分钟混合回顾",
+      "到期复习",
+      "复习我的错题"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/session-builder",
+    "headings": [
+      "制定你的学习计划"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/labs",
+    "headings": [
+      "在玩中理解知识",
+      "十个动手实验——一次玩懂一个知识点"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/glossary",
+    "headings": [
+      "单元词汇表——双语词汇与解释"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/timeline",
+    "headings": [
+      "美国历史时间线 — 从詹姆斯敦到今天"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/mastery-map",
+    "headings": [
+      "Skill map — how the courses connect · 技能地图——课程如何衔接",
+      "Knowledge-point mastery map"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/scope",
+    "headings": [
+      "已覆盖什么——还没覆盖什么"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/home",
+    "headings": [
+      "一级一级台阶，学懂核心课题。弗吉尼亚 6–8 年级 · 核心课题，轻松学",
+      "Your first win takes about five minutes · 第一次成功大约需要五分钟",
+      "选年级——三步直达练习",
+      "这是什么？",
+      "六年级——为今天选一个学科"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/parent-briefing",
+    "headings": [
+      "家长简报",
+      "学习进度报告",
+      "家长进度报告 —— 一页纸"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/print-studio",
+    "headings": [
+      "Print as a workbook · 打印成练习册"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/writing-studio",
+    "headings": [
+      "写作工作室"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/source-detective",
+    "headings": [
+      "资料侦探"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/bilingual-bridge",
+    "headings": [],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/lessons",
+    "headings": [
+      "课程阶梯 — 6、7、8 年级"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "zh",
+    "route": "#/more",
+    "headings": [
+      "更多——网站的其他全部内容",
+      "讲得清楚的好视频",
+      "管理学习者",
+      "数据与备份",
+      "练习与参考链接"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/flashcards",
+    "headings": [
+      "Flashcards — every key word, two languages"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/guided-practice",
+    "headings": [
+      "Guided practice — worked example, then your turn · 引导练习——先看例题，再自己试",
+      "SOL-style quiz — 7 questions, 15 minutes"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/quizzes",
+    "headings": [
+      "10 questions. How high can you climb?"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/sol-practice",
+    "headings": [
+      "SOL practice exam"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/daily-review",
+    "headings": [
+      "Five-Minute Mixed Retrieval",
+      "Review due",
+      "Review my mistakes"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/session-builder",
+    "headings": [
+      "Build your session"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/labs",
+    "headings": [
+      "Learn by playing with the ideas",
+      "Ten hands-on labs — one idea at a time"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/glossary",
+    "headings": [
+      "Unit glossaries — words with explanations, in both languages"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/timeline",
+    "headings": [
+      "U.S. History timeline — Jamestown to today"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/mastery-map",
+    "headings": [
+      "Skill map — how the courses connect · 技能地图——课程如何衔接",
+      "Knowledge-point mastery map"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/scope",
+    "headings": [
+      "What is covered — and what is not yet"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/home",
+    "headings": [
+      "Climb the middle-school ladder, one rung at a time.弗吉尼亚 6–8 年级 · 核心课题，轻松学",
+      "Your first win takes about five minutes · 第一次成功大约需要五分钟",
+      "Pick your grade — reach practice in three taps",
+      "What is this?",
+      "Grade 6 — pick one subject for today"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/parent-briefing",
+    "headings": [
+      "Parent Briefing",
+      "Progress report",
+      "Parent progress report — one page"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/print-studio",
+    "headings": [
+      "Print as a workbook · 打印成练习册"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/writing-studio",
+    "headings": [
+      "Writing Studio"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/source-detective",
+    "headings": [
+      "Source Detective"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/bilingual-bridge",
+    "headings": [],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/lessons",
+    "headings": [
+      "The lesson ladder — Grades 6, 7 & 8"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "mobile",
+    "language": "en",
+    "route": "#/more",
+    "headings": [
+      "More — everything else on the site",
+      "Videos that explain it well",
+      "Manage learners",
+      "Data & backup",
+      "Practice & reference links"
+    ],
+    "scroll": 390,
+    "width": 390
+  }
+]

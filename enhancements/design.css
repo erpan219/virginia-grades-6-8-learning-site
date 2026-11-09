@@ -1,0 +1,275 @@
+/* VA learning site: scoped visual refinement, 2026-11-09.
+   No framework, assets, navigation changes, or state overrides.
+   Kept in @media screen so worksheet/report printing retains its layout.
+   Extra selector specificity is intentional: index.html contains later
+   legacy style blocks and runtime-injected component styles. */
+@media screen {
+  :root {
+    --va-ui-line: #c9cfc3;
+    --va-ui-wash: #eef2e9;
+    --va-ui-radius: 12px;
+    --va-reading-width: 66ch;
+  }
+  :root[data-theme="dark"] {
+    --va-ui-line: #515b4c;
+    --va-ui-wash: #2b3328;
+  }
+
+  /* A quiet, readable toolbar; forest green remains the navigation anchor. */
+  body .toolbar {
+    background: var(--card);
+    color: var(--ink);
+    border-bottom: 1px solid var(--va-ui-line);
+    box-shadow: none;
+  }
+  body .toolbar .brand,
+  body .toolbar #toolbarPanelBody .tnav > a,
+  body .toolbar #toolbarPanelBody .more-btn,
+  body .toolbar #toolbarPanelBody .pf-switch,
+  body .toolbar #toolbarPanelBody .theme-toggle,
+  body .toolbar #toolbarPanelBody .tb-expand,
+  body .toolbar .nav-toggle {
+    color: var(--ink);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.35;
+  }
+  /* The expand/menu buttons retain their existing visibility contract. */
+  body .toolbar .nav-toggle { display: none; }
+  body .toolbar #toolbarPanelBody .tb-expand { display: none; }
+  body .toolbar .brand { gap: .5rem; }
+  body .toolbar #toolbarPanelBody .pf-switch,
+  body .toolbar #toolbarPanelBody .theme-toggle,
+  body .toolbar #toolbarPanelBody .tb-expand,
+  body .toolbar .nav-toggle {
+    border: 1px solid var(--va-ui-line);
+    background: var(--card);
+    border-radius: 8px;
+  }
+  body .toolbar .progress-pill,
+  body .toolbar .va-save-chip {
+    background: var(--va-ui-wash);
+    border-color: var(--va-ui-line);
+    color: var(--ink-soft);
+    border-radius: 8px;
+  }
+  body.lac-cloud-active .toolbar .va-save-chip { display: inline-flex !important; }
+  body .toolbar .progress-pill .ring {
+    background: conic-gradient(var(--accent) calc(var(--p) * 1%), var(--va-ui-line) 0);
+  }
+  body .toolbar .progress-pill .ring::after { background: var(--card); }
+  body .toolbar #toolbarPanelBody .lang-toggle {
+    background: var(--va-ui-wash);
+    border-color: var(--va-ui-line);
+    gap: 2px;
+  }
+  body .toolbar #toolbarPanelBody .lang-toggle button {
+    min-height: 44px;
+    min-width: 44px;
+    color: var(--ink-soft);
+    padding: .4rem .65rem;
+    font-size: .8125rem;
+    line-height: 1.35;
+  }
+  body .toolbar #toolbarPanelBody .lang-toggle button[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  body .toolbar #toolbarPanelBody .p4-disp button {
+    min-height: 44px;
+    min-width: 44px;
+    border-radius: 8px;
+    border-color: var(--va-ui-line);
+  }
+  body .toolbar #toolbarPanelBody .tnav > a:hover,
+  body .toolbar #toolbarPanelBody .more-btn:hover,
+  body .toolbar #toolbarPanelBody .pf-switch:hover,
+  body .toolbar #toolbarPanelBody .theme-toggle:hover,
+  body .toolbar #toolbarPanelBody .tb-expand:hover,
+  body .toolbar .nav-toggle:hover {
+    background: var(--va-ui-wash);
+    color: var(--ink);
+  }
+  body .toolbar :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+  body .toolbar #moreMenu { border-color: var(--va-ui-line); }
+  body .toolbar #moreMenu a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    line-height: 1.4;
+  }
+  body .toolbar #fxBridgeToolbar .fx-bridge-opt[aria-checked="true"] {
+    background: var(--va-ui-wash);
+    border-color: var(--accent);
+    box-shadow: inset 3px 0 var(--accent);
+  }
+
+  /* The same art and copy, balanced against the next learning action. */
+  body .app-shell .wrap .hero {
+    border-color: var(--va-ui-line);
+    border-radius: 16px;
+  }
+  body .app-shell .hero .hero-body { padding: clamp(1.25rem, 2.5vw, 2rem); }
+  body .app-shell .hero h1 { font-size: clamp(1.625rem, 2.7vw, 2.125rem); line-height: 1.24; }
+  body .app-shell .hero h1 .sub { font-size: .55em; line-height: 1.5; margin-top: .65rem; }
+  body .app-shell .hero .lede { font-size: 1rem; line-height: 1.65; margin: 1rem 0 1.25rem; }
+  body .app-shell .hero .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .5rem;
+    padding-top: 1rem;
+    border-color: var(--va-ui-line);
+  }
+  body .app-shell .hero .hero-stats div { min-width: 0; }
+  body .app-shell .hero .hero-stats div b { font-size: 1.25rem; line-height: 1.3; }
+  body .app-shell .hero .hero-stats div span { font-size: .75rem; line-height: 1.45; }
+  body .app-shell .hero .cta-row { gap: .5rem; }
+  body .app-shell .hero .cta-row .btn { min-height: 44px; padding: .65rem .9rem; }
+
+  /* Clear hierarchy in existing lists, lessons, and practice views. */
+  body .app-shell .sec-head { border-top: 1px solid var(--va-ui-line); padding-top: 1.25rem; }
+  body .app-shell .sec-head h2 { font-size: clamp(1.375rem, 2.1vw, 1.75rem); line-height: 1.35; }
+  body .app-shell .sec-head p { max-width: var(--va-reading-width); font-size: 1rem; line-height: 1.65; }
+  body .app-shell .grade-head h3 { font-size: 1.375rem; line-height: 1.4; }
+  body .app-shell .cards .lcard { padding: 1.125rem .75rem; column-gap: .875rem; }
+  body .app-shell .cards .lcard h4 { font-size: 1.0625rem; line-height: 1.45; font-weight: 700; }
+  body .app-shell .cards .lcard p { max-width: var(--va-reading-width); font-size: .9375rem; line-height: 1.65; }
+  body .app-shell .cards .lcard .foot { gap: .5rem; }
+  body .app-shell .cards .lcard .btn { min-height: 44px; }
+  body .app-shell .filters { border-color: var(--va-ui-line); gap: .75rem; }
+  body .app-shell .filters .chip { min-height: 44px; line-height: 1.35; }
+  /* Subject buttons already contain their symbol; avoid a duplicate pseudo-icon. */
+  body .app-shell .filters .chip::before { content: none; }
+  body .app-shell .more-list .more-item { border-color: var(--va-ui-line); font-weight: 600; }
+  body .app-shell :is(.today-card, .p1-card, .rep-card, .exam-card, .challenge, .gterm) {
+    border-color: var(--va-ui-line);
+  }
+  body .app-shell .flash-face.front { border-color: var(--va-ui-line); }
+  body .app-shell .flash-face[aria-hidden="true"] { visibility: hidden; }
+  body .app-shell .srs-ratings .srs-rate { min-height: 44px; }
+
+  #modalBox #mTitle { font-size: clamp(1.5rem, 2.8vw, 1.875rem); line-height: 1.35; }
+  #modalBox .m-sec > h5 { font-size: .875rem; line-height: 1.5; }
+  #modalBox :is(.big-idea, #mExample, #mTry, .dp-passage) {
+    max-width: var(--va-reading-width);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  #modalBox .quiz-q { padding: 1.125rem; border-color: var(--va-ui-line); margin-top: 1rem; }
+  #modalBox .quiz-q > p,
+  body #chBox .ch-q,
+  body .exam-q h3 { font-size: 1.125rem; line-height: 1.65; }
+  #modalBox .quiz-q .opts,
+  body #chBox .ch-opts { gap: .625rem; }
+  #modalBox .quiz-q .opt,
+  body #chBox .ch-opt { min-height: 52px; line-height: 1.55; padding: .8rem 1rem; }
+  #modalBox #fbRail { gap: .5rem; }
+  #modalBox #fbRail button { line-height: 1.45; }
+  html[lang^="zh"] { --va-reading-width: 36em; }
+}
+
+@media screen and (min-width: 901px) {
+  body .toolbar .toolbar-in {
+    max-width: 1380px;
+    gap: .3rem .5rem;
+    padding: .5rem 1rem;
+  }
+  body .toolbar .brand { font-size: .9375rem; }
+  body .toolbar .progress-pill { padding: .35rem .5rem; font-size: .75rem; }
+  body .toolbar .va-save-chip { padding: .35rem .5rem; font-size: .6875rem; }
+  body .toolbar #toolbarPanelBody .tnav {
+    gap: .15rem;
+    border-top: 1px solid var(--va-ui-line);
+    padding-top: .3rem;
+    justify-content: flex-start;
+  }
+  body .toolbar #toolbarPanelBody .tnav > a,
+  body .toolbar #toolbarPanelBody .more-btn { font-size: .8125rem; padding: .4rem .5rem; }
+  body .toolbar #toolbarPanelBody .pf-switch,
+  body .toolbar #toolbarPanelBody .theme-toggle { font-size: .8125rem; padding: .4rem .6rem; }
+  body .toolbar #fxBridgeToolbar { width: 100%; min-width: 0; }
+  body .toolbar #fxBridgeToolbar .fx-bridge-group {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto repeat(3, minmax(0, 1fr));
+    align-items: center;
+    gap: .5rem;
+    padding: .35rem 0 0;
+    margin: 0;
+    border-top: 1px solid var(--va-ui-line);
+  }
+  body .toolbar #fxBridgeToolbar .fx-bg-label { font-size: .75rem; line-height: 1.35; margin: 0; }
+  body .toolbar #fxBridgeToolbar .fx-bridge-opt {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: .4rem .65rem;
+    margin: 0;
+    border-color: var(--va-ui-line);
+    font-size: .8125rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: normal;
+  }
+  body .toolbar #fxBridgeToolbar .fx-bridge-opt small {
+    display: block;
+    margin: .15rem 0 0;
+    font-size: .6875rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    opacity: 1;
+  }
+  html.tb-compact body .toolbar .toolbar-in { padding-block: .35rem; gap: .3rem .5rem; }
+  html.tb-compact body .toolbar #toolbarPanelBody .tb-expand { display: inline-flex; }
+  html.tb-compact body .toolbar #fxBridgeToolbar { display: none; }
+  html.tb-compact body .toolbar #toolbarPanelBody .p4-disp { display: none; }
+  body .app-shell .wrap .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+  body .app-shell .hero .hero-img { min-height: 360px; }
+  body .app-shell .hero .hero-img img { object-position: center 30%; }
+  body #vaMainNav { box-shadow: none; padding-top: 1rem; }
+  body #vaMainNav .va-nav-item { border-radius: 8px; }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1180px) {
+  body .toolbar #fxBridgeToolbar .fx-bridge-group { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  body .toolbar #fxBridgeToolbar .fx-bg-label { grid-column: 1 / -1; }
+}
+
+@media screen and (max-width: 900px) {
+  body .toolbar .nav-toggle { display: inline-flex; }
+  body .toolbar.open #toolbarPanel,
+  body .toolbar.open #toolbarPanel .toolbar-panel-head { background: var(--card); color: var(--ink); }
+  body .toolbar.open #toolbarPanel .toolbar-panel-head { border-color: var(--va-ui-line); }
+  body .toolbar.open #toolbarPanel .toolbar-panel-title { color: var(--ink); }
+  body .toolbar.open #toolbarPanel .toolbar-panel-close {
+    background: var(--va-ui-wash);
+    color: var(--ink);
+    border-color: var(--va-ui-line);
+  }
+  body .toolbar.open #toolbarPanelBody { gap: .875rem; }
+  body .toolbar #fxBridgeToolbar .fx-bridge-opt { min-height: 52px; border-color: var(--va-ui-line); }
+  body .app-shell .hero .hero-img { min-height: 220px; }
+  body .app-shell .hero .hero-body { padding: 1.25rem; }
+  body .app-shell .hero .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 1rem; }
+  body .app-shell .hero .hero-stats div { display: flex; align-items: baseline; gap: .5rem; }
+  body .app-shell .hero .hero-stats div span { font-size: .8125rem; }
+  #modalBox .quiz-q { padding: 1rem .875rem; }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  body .toolbar .toolbar-in { transition: none; }
+}
+
+/* Compact by default; keep full controls available through the existing Menu. */
+@media screen and (min-width: 901px) {
+  body .toolbar #toolbarPanelBody .tb-expand { display: inline-flex; }
+  html.tb-compact body .toolbar #toolbarPanelBody .tnav { display: none; }
+  body .toolbar .pf-switch { max-width: 230px; overflow-wrap: anywhere; }
+  body .app-shell section[id] { scroll-margin-top: calc(var(--va-toolbar-height, 72px) + 20px); }
+  body .app-shell .filters { top: calc(var(--va-toolbar-height, 72px) + 8px); }
+}

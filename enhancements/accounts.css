@@ -1,0 +1,43 @@
+/* Account UI stays inside the existing Learners view. */
+.lac-panel { border: 1px solid var(--boundary); border-radius: 12px; background: var(--card); color: var(--ink); padding: clamp(1rem, 3vw, 1.5rem); margin-block: 1.25rem; scroll-margin-top: 180px; }
+.lac-panel h3 { font-size: 1.375rem; line-height: 1.35; }
+.lac-panel h4 { font-size: 1.125rem; margin: 1rem 0 .75rem; }
+.lac-intro, .lac-hint { max-width: 66ch; color: var(--ink-soft); line-height: 1.6; }
+.lac-hint { font-size: .875rem; margin: .4rem 0 .75rem; }
+.lac-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.lac-panel .btn, .lac-dialog > .btn { min-height: 44px; line-height: 1.4; white-space: normal; }
+.lac-actions .btn[aria-pressed="true"] { border-color: var(--accent); background: var(--strong-fill); color: var(--ink); }
+.lac-form { display: grid; gap: 1rem; max-width: 34rem; margin: 1.25rem 0; }
+.lac-form > .btn { justify-self: start; }
+.lac-field label { display: block; font-weight: 700; margin-bottom: .35rem; }
+.lac-field input { display: block; width: 100%; min-height: 48px; padding: .65rem .75rem; background: var(--card); color: var(--ink); border: 1px solid var(--boundary); border-radius: 8px; font: inherit; }
+.lac-field input:focus-visible, .lac-panel button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.lac-status { padding: .75rem 0; margin: 0; font-weight: 600; line-height: 1.6; }
+.lac-status:empty { padding: 0; }
+.lac-status.error, .lac-warning { color: var(--bad); }
+.lac-status.success { color: var(--good); }
+.lac-identity { font-weight: 700; padding-block: .75rem; border-block: 1px solid var(--line); }
+.lac-local-exit { border-top: 1px solid var(--line); margin-top: 1rem; padding-top: 1rem; }
+.lac-progress, .lac-secrets, .lac-conflict { border: 1px solid var(--boundary); border-radius: 8px; padding: 1rem; margin-block: 1rem; }
+.lac-conflict { border-left: 4px solid var(--shaky); }
+.lac-conflict .btn { margin: .3rem .4rem .3rem 0; }
+.lac-secrets { background: var(--card-2); }
+.lac-code { display: block; user-select: all; overflow-wrap: anywhere; word-break: break-word; background: var(--card); color: var(--ink); border: 1px solid var(--boundary); border-radius: 6px; padding: .75rem; margin: .4rem 0 1rem; font-size: 1rem; line-height: 1.6; }
+.lac-check { display: flex; gap: .75rem; align-items: flex-start; min-height: 44px; margin-block: 1rem; }
+.lac-check input { flex: none; width: 22px; height: 22px; margin-top: .2rem; accent-color: var(--accent); }
+.lac-learners { list-style: none; padding: 0; margin-block: 1rem; }
+.lac-learners > li { padding: 1rem 0; border-top: 1px solid var(--line); }
+.lac-learner-name { display: flex; flex-wrap: wrap; gap: .4rem .75rem; margin-bottom: .75rem; }
+.lac-learner-name span { color: var(--ink-soft); }
+.lac-dialog, .lac-confirm { width: min(48rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); overflow: auto; color: var(--ink); background: var(--bg); border: 1px solid var(--boundary); border-radius: 16px; padding: 1rem; }
+.lac-dialog::backdrop, .lac-confirm::backdrop { background: rgba(0, 0, 0, .6); }
+.lac-confirm { width: min(38rem, calc(100vw - 2rem)); padding: clamp(1rem, 4vw, 1.5rem); }
+.lac-confirm h3 { font-size: 1.25rem; line-height: 1.4; }
+.lac-confirm p { line-height: 1.65; margin-block: 1rem; }
+.lac-confirm .btn { min-height: 44px; white-space: normal; }
+.lac-confirm button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.lac-dialog > .btn { display: flex; margin-left: auto; }
+.lac-cloud-active #pfHost [data-delete], .lac-cloud-active #pfHost [data-rename], .lac-cloud-active #pfAdd, .lac-cloud-active #pfImportBtn { display: none; }
+.lac-cloud-active #pfSwitch { cursor: pointer; }
+@media (max-width: 600px) { .lac-panel { padding: 1rem; scroll-margin-top: 100px; } .lac-actions > .btn { flex: 1 1 auto; } .lac-progress, .lac-secrets, .lac-conflict { padding: .875rem; } }
+@media print { .lac-panel, .lac-dialog, .lac-confirm { display: none !important; } }

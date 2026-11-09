@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+.dev.vars
+.env
+.env.*
+!.env.example
+.cf/
+.cloudflare/
+.wrangler/
+.local/
+audit/evidence/*.jpg
+audit/evidence/*.png
+audit/evidence/qa-profile-export.json

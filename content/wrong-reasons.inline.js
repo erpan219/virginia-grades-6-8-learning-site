@@ -1,0 +1,5 @@
+/* BEGIN VA CONTENT WRONG REASONS 2026-11-09 */
+Object.keys(VA_CONTENT_EXPANSION.wrong).forEach(function (key) {
+  VA_WRONG[key] = VA_CONTENT_EXPANSION.wrong[key];
+});
+/* END VA CONTENT WRONG REASONS 2026-11-09 */
